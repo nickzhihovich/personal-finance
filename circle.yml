@@ -1,0 +1,11 @@
+machine:
+  ruby:
+    version: 2.5.0
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: finance-1200
+test:
+  post:
+    - bundle exec rake
