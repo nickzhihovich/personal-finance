@@ -1,24 +1,4 @@
-# README
+# Setup app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+After installing the app, rename file .env-sample to .env and setup variables in this file. 
+[More about variables.](https://github.com/marderer/personal-finance/wiki/.env)

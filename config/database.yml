@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: personal-finance_production
-  username: personal-finance
-  password: <%= ENV['PERSONAL-FINANCE_DATABASE_PASSWORD'] %>
+  username: <%= ENV['FINANCE_DATABASE_USERNAME'] %>
+  password: <%= ENV['FINANCE_DATABASE_PASSWORD'] %>
