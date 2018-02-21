@@ -1,0 +1,22 @@
+require: rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'db/migrate/**'
+    - 'Gemfile'
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/ClassLength:
+  Max: 1500
+
+Documentation:
+  Enabled: false
+
+require: rubocop-rspec
