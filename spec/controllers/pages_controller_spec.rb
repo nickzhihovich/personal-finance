@@ -6,10 +6,5 @@ RSpec.describe PagesController, type: :controller do
       get :show, params: { 'page' => 'home' }
       expect(response.status).to eq(200)
     end
-
-    it 'has a 404 status code' do
-      get :show, params: { 'page' => 'asdasd' }
-      expect(response.status).to eq(404)
-    end
   end
 end

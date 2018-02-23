@@ -21,7 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 3.2'
 gem 'slim'
 gem 'capybara'
-
+gem 'reek'
 gem 'rubocop', require: false
 gem 'pry-byebug'
 # Use CoffeeScript for .coffee assets and views

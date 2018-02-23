@@ -8,6 +8,7 @@ AllCops:
     - 'tmp/**/*'
     - 'public/**/*'
     - 'log/**/*'
+    - 'bin/**/*'
 
 Metrics/LineLength:
   Max: 120

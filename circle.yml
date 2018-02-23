@@ -36,15 +36,10 @@ dependencies:
 test:
   post:
     - bundle exec rubocop
-    - reek
+    - reek app -c reek.yml
+    - reek config -c reek.yml
 deployment:
   staging:
     branch: master
     heroku:
       appname: floating-citadel-20398
-
-## Custom notifications
-notify:
-  webhooks:
-    # A list of hashes representing hooks. Only the url field is supported.
-    - url: https://someurl.com/hooks/circle
