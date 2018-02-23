@@ -32,12 +32,19 @@ dependencies:
   override:
     - bundle install: # note ':' here
         timeout: 180 # fail if command has no output for 3 minutes
-  pre:
-    - rubocop
 
+test:
+  post:
+    - bundle exec rubocop
+    - reek
 deployment:
   staging:
     branch: master
     heroku:
       appname: floating-citadel-20398
 
+## Custom notifications
+notify:
+  webhooks:
+    # A list of hashes representing hooks. Only the url field is supported.
+    - url: https://someurl.com/hooks/circle
