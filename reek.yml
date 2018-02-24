@@ -2,3 +2,7 @@ IrresponsibleModule:
   enabled: false
 NestedIterators:
   max_allowed_nesting: 2
+UnusedPrivateMethod:
+  enabled: false
+InstanceVariableAssumption:
+  enabled: false
