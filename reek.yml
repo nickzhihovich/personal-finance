@@ -6,3 +6,5 @@ UnusedPrivateMethod:
   enabled: false
 InstanceVariableAssumption:
   enabled: false
+UncommunicativeMethodName:
+  enabled: false
