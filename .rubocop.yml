@@ -24,3 +24,6 @@ Documentation:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Metrics/BlockLength:
+  Max: 35
