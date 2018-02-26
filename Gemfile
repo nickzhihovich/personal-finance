@@ -24,6 +24,8 @@ gem 'capybara'
 gem 'reek'
 gem 'rubocop', require: false
 gem 'pry-byebug'
+gem 'devise'
+gem 'omniauth'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

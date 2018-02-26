@@ -9,4 +9,8 @@ html
     = javascript_pack_tag 'application'
     = stylesheet_pack_tag 'bootstrap'
   body
+    p class="notice"
+      = notice
+    p class="alert"
+      = alert
     = yield
