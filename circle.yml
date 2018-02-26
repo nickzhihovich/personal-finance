@@ -1,0 +1,45 @@
+machine:
+
+  timezone:
+    Europe/Minsk # Set the timezone
+
+  # Version of ruby to use
+  ruby:
+    version:
+      2.5.0
+
+  # Override /etc/hosts
+  hosts:
+    circlehost: 127.0.0.1
+    dev.mycompany.com: 127.0.0.1
+
+  # Add some environment variables
+  environment:
+    CIRCLE_ENV: test
+    DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/circle_test
+
+## Customize checkout
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init # use submodules
+
+## Customize dependencies
+dependencies:
+  pre:
+    - gem install bundler --pre
+
+  override:
+    - bundle install: # note ':' here
+        timeout: 180 # fail if command has no output for 3 minutes
+
+test:
+  post:
+    - bundle exec rubocop
+    - reek app -c reek.yml
+    - reek config -c reek.yml
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: floating-citadel-20398
