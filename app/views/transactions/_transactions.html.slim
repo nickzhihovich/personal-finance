@@ -1,0 +1,15 @@
+table.table
+  thead
+    tr
+      th scope="col"  Sum
+      th scope="col"  Date
+      th scope="col"  Comment
+  tbody
+    - for transaction in @transactions
+      tr
+        th
+          = transaction.sum
+        td
+          = transaction.date.strftime("%d %B %Y")
+        td
+          = transaction.comment
