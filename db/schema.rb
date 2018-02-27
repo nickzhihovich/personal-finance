@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 20180226210814) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
