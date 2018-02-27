@@ -9,6 +9,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def github
+    @user = user_from_auth
+    sign_in_and_redirect @user
+  end
+
   private
 
   def set_devise_google_data

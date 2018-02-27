@@ -1,5 +1,6 @@
 h2 Log in
 = link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path
+= link_to "Sign in with Github", user_github_omniauth_authorize_path
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .field
     = f.label :email
