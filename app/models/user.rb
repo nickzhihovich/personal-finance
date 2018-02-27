@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :transactions
+
   mount_uploader :avatar, AvatarUploader
 
   devise :database_authenticatable, :registerable,
