@@ -1,5 +1,4 @@
 class TransactionsController < ApplicationController
-
   def new
     @transaction = current_user.transactions.new
   end
@@ -11,5 +10,15 @@ class TransactionsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  private
+
+  def transaction_params
+    params.require(:transaction).permit(
+      :sum,
+      :date,
+      :comment
+    )
   end
 end
