@@ -30,6 +30,8 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem 'carrierwave', '~> 1.0'
 gem 'simple_form'
+gem 'will_paginate', '~> 3.1.0'
+gem 'bootstrap-will_paginate'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

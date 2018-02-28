@@ -1,3 +1,5 @@
 h2
   | All transactions
 = render 'transactions/transactions'
+
+= will_paginate(@transactions, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
