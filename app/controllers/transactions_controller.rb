@@ -2,7 +2,13 @@ class TransactionsController < ApplicationController
   before_action :find_transaction, only: %i[update destroy edit]
 
   def index
-    @transactions = current_user.transactions.paginate(page: params[:page], per_page: 10)
+    @q = current_user.transactions.ransack(params[:q])
+    @transactions = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
+  end
+
+  def search
+    index
+    render :index
   end
 
   def new

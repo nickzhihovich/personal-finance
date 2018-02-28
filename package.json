@@ -6,7 +6,7 @@
     "bootstrap": "4.0.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
-    "startbootstrap-sb-admin": "4.0.0s"
+    "startbootstrap-sb-admin": "4.0.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.11.1"
