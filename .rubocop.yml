@@ -27,3 +27,10 @@ Style/FrozenStringLiteralComment:
 
 Metrics/BlockLength:
   Max: 35
+  Exclude:
+    - 'config/initializers/**'
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - 'config/**/*'

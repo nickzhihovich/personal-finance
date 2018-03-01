@@ -1,0 +1,5 @@
+= simple_form_for @transaction do |f|
+  = f.input :sum
+  = f.input :date, as: :date, order: [:day, :month, :year]
+  = f.input :comment
+  = f.button :submit, 'Add money'

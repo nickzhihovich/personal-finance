@@ -1,2 +1,13 @@
-.container
-  h1 Hello world.
+- if user_signed_in?
+  h2
+    | Add money
+  =render 'transactions/form'
+
+  .last-transactions
+    h2
+      | Last transactions
+    = render 'transactions/transactions'
+- else
+  h2
+    | Home page
+

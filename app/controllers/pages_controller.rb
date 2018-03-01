@@ -1,15 +1,6 @@
 class PagesController < ApplicationController
-  def show
-    if valid_page?
-      render template: "pages/#{params[:page]}"
-    else
-      render file: "#{Rails.root}/public/404", layout: false, status: :not_found
-    end
-  end
-
-  private
-
-  def valid_page?
-    File.exist?(Pathname.new(Rails.root + "app/views/pages/#{params[:page]}.html.slim"))
+  def home
+    @transaction = Transaction.new
+    @transactions = current_user.transactions.limit(10).order('id desc') if user_signed_in?
   end
 end
