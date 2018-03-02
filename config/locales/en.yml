@@ -11,3 +11,4 @@ en:
   сhange_password: 'Change password'
   send_me_reset_password_instructions: 'Send me reset password instructions'
   forgot_password: 'Forgot your password?'
+  all_transactions: 'All transactions'
