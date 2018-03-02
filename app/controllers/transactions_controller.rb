@@ -1,6 +1,10 @@
 class TransactionsController < ApplicationController
   before_action :find_transaction, only: %i[update destroy edit]
 
+  def index
+    @transactions = current_user.transactions.reverse
+  end
+
   def new
     @transaction = current_user.transactions.new
   end

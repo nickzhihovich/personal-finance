@@ -17,17 +17,10 @@ html
           span.navbar-toggler-icon
         #navbarResponsive.collapse.navbar-collapse
           ul#exampleAccordion.navbar-nav.navbar-sidenav
-            li.nav-item data-placement="right" data-toggle="tooltip" title="Components"
-              a.nav-link.nav-link-collapse.collapsed data-parent="#exampleAccordion" data-toggle="collapse" href="#collapseComponents"
-                i.fa.fa-fw.fa-wrench
-                span.nav-link-text Components
-              ul#collapseComponents.sidenav-second-level.collapse
-                li
-                  a href="navbar.html"  Navbar
             li.nav-item data-placement="right" data-toggle="tooltip" title="Link"
-              a.nav-link href="#"
+              = link_to activity_page_path, class: 'nav-link' do
                 i.fa.fa-fw.fa-link
-                span.nav-link-text Link
+                span.nav-link-text Activity page
           ul.navbar-nav.sidenav-toggler
             li.nav-item
               a#sidenavToggler.nav-link.text-center
