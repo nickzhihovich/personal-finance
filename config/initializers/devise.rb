@@ -18,4 +18,6 @@ Devise.setup do |config|
   config.password_length = 6..128
 
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {}
 end
