@@ -3,7 +3,7 @@ class CreateTransactions < ActiveRecord::Migration[5.1]
     create_table :transactions do |t|
       t.string   :sum
       t.date     :date
-      t.string   :comment
+      t.text   :comment
       t.integer  :user_id
       t.timestamps
     end
