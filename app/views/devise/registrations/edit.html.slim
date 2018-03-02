@@ -2,40 +2,37 @@ h2
   |= t('edit') #{resource_name.to_s.humanize}
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f|
   = devise_error_messages!
-  .field
+  .form-group.avatar
     - if current_user.avatar.url.present?
       = image_tag(current_user.avatar.url)
-      = f.label :remove_avatar do
+      .form-group
+        = f.label :remove_avatar
         = f.check_box :remove_avatar
-    = f.label :avatar do
-      = f.file_field :avatar
-      = f.hidden_field :avatar_cache
-    br
-    = f.label :username
-    br
-    = f.text_field :username
-    br
+    = f.label :avatar
+    = f.file_field :avatar, class: 'form-control'
+    = f.hidden_field :avatar_cache, class: 'form-control'
+  .form-group
+    = f.text_field :username, placeholder: 'username', autofocus: true, class: 'form-control'
+  .form-group
     = f.label :email
-    br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    div
-      | Currently waiting confirmation for: #{resource.unconfirmed_email}
-  .field
+    = f.email_field :email, placeholder: 'Email', class: 'form-control'
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      div
+        | Currently waiting confirmation for: #{resource.unconfirmed_email}
+  .form-group
     = f.label :password
-    i (leave blank if you don't want to change it)
-    br/
-    = f.password_field :password, autocomplete: "off"
+    i
+      | leave blank if you don't want to change it
+    = f.password_field :password, autocomplete: "off", class: 'form-control'
     - if @minimum_password_length
-      br/
       em
         = @minimum_password_length
         | characters minimum
-  .field
+  .form-group
     = f.label :password_confirmation
-    br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
+    = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+
+  .form-group
     = f.label :current_password
     i (we need your current password to confirm your changes)
     br/
