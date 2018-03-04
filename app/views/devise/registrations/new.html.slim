@@ -9,7 +9,9 @@ h2= t('sign_up')
     = f.label :password
     - if @minimum_password_length
       em
-        | (#{@minimum_password_length} characters minimum)
+        | (#{@minimum_password_length}
+        = t('characters_minimum')
+        | )
     br/
     = f.password_field :password, autocomplete: "off"
   .field

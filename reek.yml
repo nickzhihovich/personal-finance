@@ -9,4 +9,8 @@ InstanceVariableAssumption:
 UncommunicativeMethodName:
   enabled: false
 UtilityFunction:
-  public_methods_only: true
+  enabled: false
+FeatureEnvy:
+  enabled: false
+ControlParameter:
+  enabled: false

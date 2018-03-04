@@ -13,3 +13,8 @@ en:
   send_me_reset_password_instructions: 'Send me reset password instructions'
   forgot_password: 'Forgot your password?'
   all_transactions: 'All transactions'
+  confirm_new_password: 'Confirm new password'
+  characters_minimum: ' characters minimum'
+  currently_waiting_confirmation_for: 'Currently waiting confirmation for'
+  leave_blank_if_you_dont_want_to_change_it: "leave blank if you don\'t want to change it"
+  we_need_your_current_password_to_confirm_your_changes: 'we need your current password to confirm your changes'
