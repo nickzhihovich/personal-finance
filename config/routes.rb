@@ -3,5 +3,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   get 'activity_page' => 'transactions#index'
-  resources :transactions, except: %i[index show]
+  resources :transactions, except: %i[index show] do
+    collection do
+      match 'search' => 'transactions#search', :via => %i[get post], :as => :search
+    end
+  end
 end
