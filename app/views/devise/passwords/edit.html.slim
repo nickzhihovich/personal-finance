@@ -6,12 +6,14 @@ h2= t('сhange_password')
     = f.label :password, "New password"
     - if @minimum_password_length
       em
-        | (#{@minimum_password_length} characters minimum)
+        | (
+        = @minimum_password_length 
+        = t('characters_minimum')
+        | )
     = f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control'
   .form-group
-    = f.label :password_confirmation, "Confirm new password"
-    br/
-    = f.password_field :password_confirmation, autocomplete: "off"
+    = f.label :password_confirmation, t('confirm_new_password')
+    = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
   .actions
     = f.submit t('сhange_password')
 = render "devise/shared/links"

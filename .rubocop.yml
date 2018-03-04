@@ -2,35 +2,192 @@ AllCops:
   Exclude:
     - 'db/schema.rb'
     - 'vendor/**/*'
-    - 'db/migrate/**'
-    - 'Gemfile'
     - 'node_modules/**/*'
     - 'tmp/**/*'
     - 'public/**/*'
     - 'log/**/*'
+    - 'config/initializers/devise.rb'
     - 'bin/**/*'
 
+Bundler/DuplicatedGem:
+  Enabled: true
+
+Bundler/OrderedGems:
+  TreatCommentsAsGroupSeparators: true
+
+Layout/AccessModifierIndentation:
+  EnforcedStyle: indent
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/BlockEndNewline:
+  Enabled: true
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+  IndentOneStep: false
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: true
+
+Layout/CommentIndentation:
+  Enabled: true
+
+Layout/DotPosition:
+  EnforcedStyle: leading
+
+Layout/EmptyLineAfterMagicComment:
+  Exclude:
+    - 'db/schema.rb'
+
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: false
+
+Layout/EmptyLines:
+  Enabled: true
+
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: true
+
+Layout/EmptyLinesAroundBlockBody:
+  EnforcedStyle: no_empty_lines
+  Exclude:
+    - 'config/routes/**/*'
+    - 'db/schema.rb'
+
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: no_empty_lines
+
+Layout/EmptyLinesAroundExceptionHandlingKeywords:
+  Enabled: true
+
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: true
+
+Layout/EmptyLinesAroundModuleBody:
+  EnforcedStyle: no_empty_lines
+
+Layout/EndOfLine:
+  Enabled: true
+
+Layout/ExtraSpacing:
+  AllowForAlignment: true
+  ForceEqualSignAlignment: false
+  Exclude:
+    - 'db/schema.rb'
+
+Layout/FirstParameterIndentation:
+  EnforcedStyle: special_for_inner_method_call_in_parentheses
+
+Layout/LeadingCommentSpace:
+  Enabled: true
+
+Layout/SpaceAroundBlockParameters:
+  EnforcedStyleInsidePipes: no_space
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: space
+
+Layout/SpaceAroundOperators:
+  Enabled: true
+  Exclude:
+    - 'config/env.custom.rb'
+
+Layout/SpaceBeforeBlockBraces:
+  EnforcedStyle: space
+
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: space
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+  EnforcedStyleForEmptyBraces: no_space
+
+Layout/Tab:
+  Enabled: true
+
+Layout/TrailingBlankLines:
+  EnforcedStyle: final_newline
+
+Layout/TrailingWhitespace:
+  Enabled: true
+
+Lint/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+Metrics/AbcSize:
+  Max: 18
+
+MethodLength:
+  Max: 10
+  Exclude:
+    - "spec/**/*"
+    - "db/migrate/**"
+
 Metrics/LineLength:
-  Max: 120
+  Max: 105
+  Exclude:
+    - 'Gemfile'
 
-Metrics/MethodLength:
-  Max: 20
-
-Metrics/ClassLength:
-  Max: 200
-
-Documentation:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
+ModuleLength:
+  Max: 100
+  Exclude:
+    - "spec/**/*"
 
 Metrics/BlockLength:
-  Max: 35
   Exclude:
-    - 'config/initializers/**'
+    - "config/**/*"
+
+Rails:
+  Enabled: true
+
+Rails/Date:
+  EnforcedStyle: flexible
+
+Rails/TimeZone:
+  EnforcedStyle: flexible
+
+Style/BlockDelimiters:
+  EnforcedStyle: line_count_based
+
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: 'reduce'
+    detect: 'find'
+    find_all: 'select'
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
   Exclude:
-    - 'config/**/*'
+    - "config/**/*"
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19_no_mixed_keys
+
+Style/MethodDefParentheses:
+  EnforcedStyle: require_parentheses
+
+Style/RedundantReturn:
+  AllowMultipleReturnValues: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+  ConsistentQuotesInMultiline: true
+

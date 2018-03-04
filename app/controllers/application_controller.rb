@@ -5,9 +5,22 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username email password password_confirmation remember_me
-                                                         avatar avatar_cache remove_avatar])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[username email password password_confirmation
-                                                                current_password avatar avatar_cache remove_avatar])
+    devise_parameter_sanitizer.permit(:sign_up, keys: shared_permitted_keys.push(:remember_me))
+    devise_parameter_sanitizer.permit(:account_update, keys: shared_permitted_keys)
+  end
+
+  private
+
+  def shared_permitted_keys
+    %i[
+      username
+      email
+      password
+      password_confirmation
+      remember_me
+      avatar
+      avatar_cache
+      remove_avatar
+    ]
   end
 end

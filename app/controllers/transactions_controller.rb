@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :find_transaction, only: %i[update destroy edit]
+  before_action :find_transaction, only: %i[update edit]
 
   def index
     @transactions = current_user.transactions.paginate(page: params[:page], per_page: 10)

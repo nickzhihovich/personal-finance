@@ -13,11 +13,13 @@ module WillPaginate
       end
 
       def page_number(page)
-        tag(:li, link(page, page, rel: rel_value(page), class: 'page-link'), class: 'page-item' + (page == current_page ? ' active' : ''))
+        tag(:li, link(page, page, rel: rel_value(page), class: 'page-link'), class: 'page-item' +
+            (page == current_page ? ' active' : ''))
       end
 
       def previous_or_next_page(page, text, classname)
-        tag(:li, link(text, page || '#', class: 'page-link'), class: ['page-item', classname[0..3], classname, ('disabled' unless page)].join(' '))
+        tag(:li, link(text, page || '#', class: 'page-link'), class:
+            ['page-item', classname[0..3], classname, ('disabled' unless page)].join(' '))
       end
 
       def gap
