@@ -53,7 +53,8 @@ html
   - else
     body#page-top.fixed-nav
       nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-        a.navbar-brand href="#{root_url}"  Start Bootstrap
+        a.navbar-brand href="#{root_url}"
+          = t('personal_finance')
         button.navbar-toggler.navbar-toggler-right aria-controls="navbarResponsive" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarResponsive" data-toggle="collapse" type="button"
           span.navbar-toggler-icon
         #navbarResponsive.collapse.navbar-collapse
