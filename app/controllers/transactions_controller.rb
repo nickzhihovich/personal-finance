@@ -15,15 +15,14 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = current_user.transactions.new(transaction_params)
-    @transaction.save
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to activity_page_path, notice: t('transaction_create') }
-        format.js { render layout: false, notice: t('transaction_create') }
+        flash[:notice] = t('transaction_create')
       else
-        format.html { redirect_to activity_page_path, notice: t('transaction_not_create') }
-        format.js { render layout: false, notice: t('transaction_not_create') }
+        flash[:alert] = t('transaction_not_create')
       end
+      format.html { redirect_to activity_page_path }
+      format.js
     end
   end
 
@@ -34,12 +33,12 @@ class TransactionsController < ApplicationController
     @transaction.update(transaction_params)
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to activity_page_path, notice: t('transaction_update') }
-        format.js { render layout: false, notice: t('transaction_update') }
+        flash[:notice] = t('transaction_update')
       else
-        format.html { redirect_to activity_page_path, notice: t('transaction_not_update') }
-        format.js { render layout: false, notice: t('transaction_not_update') }
+        flash[:alert] = t('transaction_not_update')
       end
+      format.html { redirect_to activity_page_path }
+      format.js
     end
   end
 
@@ -47,7 +46,8 @@ class TransactionsController < ApplicationController
     @transaction.destroy
 
     respond_to do |format|
-      format.html { redirect_to activity_page_path, notice: t('delete_transaction_seccess') }
+      flash[:notice] = t('transaction_update')
+      format.html { redirect_to activity_page_path }
       format.js
     end
   end
