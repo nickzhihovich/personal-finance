@@ -1,5 +1,5 @@
 h2= t('log_in')
-= link_to t('sign_in_with_google'), user_google_oauth2_omniauth_authorize_path
+= link_to t('sign_in_with_google'), user_google_omniauth_authorize_path
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .field
     = f.label :email
