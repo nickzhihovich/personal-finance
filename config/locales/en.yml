@@ -1,6 +1,7 @@
 en:
   log_in: 'Log in'
   sign_in_with_google: 'Sign in with Google'
+  sign_in_with_github: 'Sign in with Github'
   edit: 'Edit'
   logout: 'Logout'
   edit_profile: 'Edit profile'
@@ -15,6 +16,8 @@ en:
   forgot_password: 'Forgot your password?'
   all_transactions: 'All transactions'
   balance: 'Balance'
+  reset_password: 'Reset Password'
+  how_reset_password: 'Enter your email address and we will send you instructions on how to reset your password.'
   confirm_new_password: 'Confirm new password'
   characters_minimum: ' characters minimum'
   currently_waiting_confirmation_for: 'Currently waiting confirmation for'
