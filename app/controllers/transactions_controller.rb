@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :find_transaction, only: %i[update edit]
+  before_action :find_transaction, only: %i[update destroy edit]
   before_action :search_for_transactions, only: %i[index search]
 
   def index
@@ -35,6 +35,11 @@ class TransactionsController < ApplicationController
 
   def destroy
     @transaction.destroy
+
+    respond_to do |format|
+      format.html { redirect_to activity_page_path, notice: t('delete_transaction_seccess') }
+      format.js { render layout: false }
+    end
   end
 
   private
