@@ -15,3 +15,6 @@ ControlParameter:
 DuplicateMethodCall: 
   exclude:
     - ControllerHelpers#login_user
+TooManyStatements: 
+  exclude: 
+    - TransactionsController

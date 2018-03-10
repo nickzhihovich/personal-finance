@@ -9,6 +9,7 @@ en:
   cancel_my_account: 'Cancel my account'
   back: 'Back'
   are_you_sure: 'Are you sure?'
+  add_money: 'Add money'
   sign_up: 'Sign up'
   resend_confirmation_insrtuctions: 'Resend confirmation instructions'
   сhange_password: 'Change password'
@@ -25,3 +26,4 @@ en:
   we_need_your_current_password_to_confirm_your_changes: 'we need your current password to confirm your changes'
   personal_finance: 'Personal finance'
   activity_page: 'Activity page'
+  delete_transaction_seccess: 'You successfully delete transaction.' 

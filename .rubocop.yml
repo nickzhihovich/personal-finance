@@ -194,4 +194,6 @@ Style/StringLiterals:
   EnforcedStyle: single_quotes
   ConsistentQuotesInMultiline: true
 
+Lint/RequireParentheses:
+  Enabled: true
 require: rubocop-rspec
