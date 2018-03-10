@@ -4,6 +4,7 @@ table.table
       th scope="col"= t('activerecord.attributes.transaction.amount')
       th scope="col"= t('activerecord.attributes.transaction.date')
       th scope="col"= t('activerecord.attributes.transaction.comment')
+      th
   tbody
     - for transaction in @transactions
       tr
@@ -13,3 +14,6 @@ table.table
           = transaction.date.strftime("%d %B %Y")
         td
           = transaction.comment
+        td
+          = link_to 'Edit', edit_transaction_path(transaction), class: 'btn btn-outline-secondary'
+          = link_to 'Delete', transaction_path(transaction), method: :delete, data: { confirm: 'Are you sure?' },  class: 'btn btn-outline-danger'
