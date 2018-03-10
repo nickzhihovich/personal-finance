@@ -12,3 +12,6 @@ FeatureEnvy:
   enabled: false
 ControlParameter:
   enabled: false
+DuplicateMethodCall: 
+  exclude:
+    - ControllerHelpers#login_user

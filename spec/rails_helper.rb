@@ -6,7 +6,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'devise'
 require 'support/factory_bot'
-require_relative 'support/controller_macros'
+require 'support/database_cleaner'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -21,9 +21,5 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers
-  config.extend ControllerMacros, type: :controller
   config.include Capybara::DSL
-  config.before :suite do
-    `bin/webpack`
-  end
 end

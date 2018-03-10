@@ -8,7 +8,7 @@ end
 gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
@@ -33,8 +33,10 @@ gem 'will_paginate-bootstrap'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'dotenv-rails'
   gem 'factory_bot_rails', '~> 4.0'
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.7'
 end
 
