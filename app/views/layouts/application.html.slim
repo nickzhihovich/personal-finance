@@ -6,9 +6,10 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
-    = javascript_pack_tag 'application'
     = stylesheet_pack_tag 'bootstrap'
+    = javascript_pack_tag 'application'
     = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+
   - if user_signed_in?
     body#page-top.fixed-nav.sticky-footer.bg-dark
       nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
