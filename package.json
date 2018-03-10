@@ -6,7 +6,9 @@
     "bootstrap": "4.0.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
-    "startbootstrap-sb-admin": "4.0.0"
+    "rails-ujs": "^5.1.5",
+    "startbootstrap-sb-admin": "4.0.0",
+    "turbolinks": "^5.1.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.11.1"
