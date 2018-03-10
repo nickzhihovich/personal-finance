@@ -8,6 +8,7 @@ end
 gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'

@@ -5,8 +5,7 @@ FactoryBot.define do
 
   factory :user do
     email { generate :email }
-    password 'asdfasdf'
-    password_confirmation 'asdfasdf'
-    confirmed_at Time.current
+    password Faker::Internet.password
+    confirmed_at Faker::Time.backward(20)
   end
 end
