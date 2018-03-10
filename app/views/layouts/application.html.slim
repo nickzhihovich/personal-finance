@@ -27,6 +27,11 @@ html
               a#sidenavToggler.nav-link.text-center
                 i.fa.fa-fw.fa-angle-left
           ul.navbar-nav.ml-auto
+            span.balance
+              b
+                = t('balance')
+                | :
+              = current_user.balance
             = link_to edit_user_registration_path, class: 'nav-link' do
               i.fa.fa-fw.fa-pencil
               | Edit
