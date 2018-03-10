@@ -53,6 +53,11 @@ class TransactionsController < ApplicationController
 
   def destroy
     @transaction.destroy
+
+    respond_to do |format|
+      format.html { redirect_to activity_page_path, notice: t('delete_transaction_seccess') }
+      format.js { render layout: false }
+    end
   end
 
   private
