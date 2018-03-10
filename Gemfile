@@ -30,9 +30,10 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 
 group :development, :test do
-  gem 'capybara'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capybara'
   gem 'dotenv-rails'
+  gem 'factory_bot_rails', '~> 4.0'
   gem 'rspec-rails', '~> 3.7'
 end
 
