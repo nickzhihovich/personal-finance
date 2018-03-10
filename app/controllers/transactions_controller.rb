@@ -51,6 +51,10 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def destroy
+    @transaction.destroy
+  end
+
   private
 
   def search_for_transactions
