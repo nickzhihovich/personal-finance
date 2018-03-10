@@ -5,4 +5,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
     :confirmable, :omniauthable, omniauth_providers: %i[google github]
+  def balance
+    Users::Balance.new(self).sum
+  end
 end
