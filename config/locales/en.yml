@@ -4,6 +4,7 @@ en:
   sign_in_with_github: 'Sign in with Github'
   edit: 'Edit'
   logout: 'Logout'
+  delete: 'Delete'
   edit_profile: 'Edit profile'
   update: 'Update'
   cancel_my_account: 'Cancel my account'
@@ -26,4 +27,5 @@ en:
   we_need_your_current_password_to_confirm_your_changes: 'we need your current password to confirm your changes'
   personal_finance: 'Personal finance'
   activity_page: 'Activity page'
+  add_transaction: 'Add transaction'
   delete_transaction_seccess: 'You successfully delete transaction.' 
