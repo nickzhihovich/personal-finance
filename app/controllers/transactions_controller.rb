@@ -15,10 +15,10 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = current_user.transactions.new(transaction_params)
-    if @transaction.save
-      redirect_to root_path
-    else
-      render 'new'
+    @transaction.save
+    respond_to do |format|
+      format.html { redirect_to activity_page_path }
+      format.js
     end
   end
 
@@ -26,10 +26,10 @@ class TransactionsController < ApplicationController
   end
 
   def update
-    if @transaction.update(transaction_params)
-      redirect_to root_path
-    else
-      render 'edit'
+    @transaction.update(transaction_params)
+    respond_to do |format|
+      format.html { redirect_to activity_page_path }
+      format.js
     end
   end
 
@@ -38,7 +38,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to activity_page_path, notice: t('delete_transaction_seccess') }
-      format.js { render layout: false }
+      format.js
     end
   end
 
