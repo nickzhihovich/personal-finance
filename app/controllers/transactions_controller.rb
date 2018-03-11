@@ -58,7 +58,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to activity_page_path, notice: t('delete_transaction_seccess') }
-      format.js { render layout: false }
+      format.js
     end
   end
 
