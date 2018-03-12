@@ -12,3 +12,5 @@ global.Rails = Rails;
 
 import Turbolinks from 'turbolinks';
 Turbolinks.start();
+
+console.log('sadasd')
