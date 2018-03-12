@@ -3,7 +3,17 @@ class Users::Balance
     @user = user
   end
 
-  def sum
-    @user.transactions.map { |transaction| transaction.amount.to_i }.sum
+  def balance
+    transactions_amount.sum
   end
+
+  private
+
+  attr_reader :user
+
+  def transactions_amount
+    user_transactions.map { |transaction| transaction.amount.to_i }
+  end
+
+  delegate :transactions, to: :user, prefix: true
 end
