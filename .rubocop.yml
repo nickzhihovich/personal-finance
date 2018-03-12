@@ -119,6 +119,8 @@ Lint/EndAlignment:
 
 Metrics/AbcSize:
   Max: 18
+  Exclude:
+    - "spec/**/*"
 
 MethodLength:
   Max: 10
@@ -139,6 +141,7 @@ ModuleLength:
 Metrics/BlockLength:
   Exclude:
     - "config/**/*"
+    - "spec/**/*"
 
 Rails:
   Enabled: true

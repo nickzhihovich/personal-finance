@@ -5428,7 +5428,7 @@ ssri@^5.2.4:
   dependencies:
     safe-buffer "^5.1.1"
 
-startbootstrap-sb-admin@4.0.0s:
+startbootstrap-sb-admin@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/startbootstrap-sb-admin/-/startbootstrap-sb-admin-4.0.0.tgz#cf141a260d031b36bdc013c68200a1c1ea6c9881"
   dependencies:

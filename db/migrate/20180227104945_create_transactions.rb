@@ -1,7 +1,7 @@
 class CreateTransactions < ActiveRecord::Migration[5.1]
   def change
     create_table :transactions do |t|
-      t.string :sum
+      t.string :amount
       t.date :date
       t.text :comment
       t.integer :user_id
