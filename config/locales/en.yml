@@ -33,6 +33,5 @@ en:
   transaction_update: 'You successfully update transaction'
   transaction_not_update: 'Transaction not update'
   delete_transaction_seccess: 'You successfully delete transaction.'
-  delete_transaction_seccess: 'You successfully delete transaction.' 
   transaction_modal_title: 'Add transactions'
   update_transaction: 'Update transaction'

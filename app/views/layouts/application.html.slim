@@ -39,16 +39,7 @@ html
               = t('logout')
       .content-wrapper
         .container-fluid
-          - if notice
-            .alert.alert-success.close aria-label="Close"
-              button.close aria-label="Close" data-dismiss="alert" type="button"
-                span aria-hidden="true"  ×
-              = notice
-          - if alert
-            .alert.alert-danger.close aria-label="Close"
-              button.close aria-label="Close" data-dismiss="alert" type="button"
-                span aria-hidden="true"  ×
-              = alert
+          = render 'layouts/notice' 
           = yield
         footer.sticky-footer
           .container
@@ -77,16 +68,7 @@ html
             = link_to t('log_in'), new_user_session_path, class: 'nav-link'
             = link_to t('sign_up'), new_user_registration_path, class: 'nav-link'
       .container
-        - if notice
-          .alert.alert-success.close aria-label="Close"
-            button.close aria-label="Close" data-dismiss="alert" type="button"
-              span aria-hidden="true"  ×
-            = notice
-        - if alert
-          .alert.alert-danger.close aria-label="Close"
-            button.close aria-label="Close" data-dismiss="alert" type="button"
-              span aria-hidden="true"  ×
-            = alert
+        = render 'layouts/notice'
         = yield
       a.scroll-to-top.rounded href="#page-top"
         i.fa.fa-angle-up
