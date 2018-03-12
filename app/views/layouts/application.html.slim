@@ -39,10 +39,7 @@ html
               = t('logout')
       .content-wrapper
         .container-fluid
-          p class="notice"
-            = notice
-          p class="alert"
-            = alert
+          = render 'layouts/notice' 
           = yield
         footer.sticky-footer
           .container
@@ -71,10 +68,7 @@ html
             = link_to t('log_in'), new_user_session_path, class: 'nav-link'
             = link_to t('sign_up'), new_user_registration_path, class: 'nav-link'
       .container
-        p class="notice"
-          = notice
-        p class="alert"
-          = alert
+        = render 'layouts/notice'
         = yield
       a.scroll-to-top.rounded href="#page-top"
         i.fa.fa-angle-up
