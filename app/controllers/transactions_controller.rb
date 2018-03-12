@@ -30,7 +30,6 @@ class TransactionsController < ApplicationController
   end
 
   def update
-    @transaction.update(transaction_params)
     respond_to do |format|
       if @transaction.update(transaction_params)
         flash[:notice] = t('transaction_update')
@@ -46,7 +45,7 @@ class TransactionsController < ApplicationController
     @transaction.destroy
 
     respond_to do |format|
-      flash[:notice] = t('transaction_update')
+      flash[:notice] = t('delete_transaction_seccess')
       format.html { redirect_to activity_page_path }
       format.js
     end

@@ -50,8 +50,3 @@ $(document).on('turbolinks:load', function() {
         format: 'yyyy-mm-dd'
     });
 });
-
-
-
-
-
