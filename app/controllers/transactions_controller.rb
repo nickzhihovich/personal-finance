@@ -17,8 +17,13 @@ class TransactionsController < ApplicationController
     @transaction = current_user.transactions.new(transaction_params)
     @transaction.save
     respond_to do |format|
-      format.html { redirect_to activity_page_path }
-      format.js
+      if @transaction.save
+        format.html { redirect_to activity_page_path, notice: t('transaction_create') }
+        format.js { render layout: false, notice: t('transaction_create') }
+      else
+        format.html { redirect_to activity_page_path, notice: t('transaction_not_create') }
+        format.js { render layout: false, notice: t('transaction_not_create') }
+      end
     end
   end
 
@@ -28,8 +33,13 @@ class TransactionsController < ApplicationController
   def update
     @transaction.update(transaction_params)
     respond_to do |format|
-      format.html { redirect_to activity_page_path }
-      format.js
+      if @transaction.update(transaction_params)
+        format.html { redirect_to activity_page_path, notice: t('transaction_update') }
+        format.js { render layout: false, notice: t('transaction_update') }
+      else
+        format.html { redirect_to activity_page_path, notice: t('transaction_not_update') }
+        format.js { render layout: false, notice: t('transaction_not_update') }
+      end
     end
   end
 
