@@ -2,7 +2,7 @@
   .card-header= t('log_in')
   .card-body
     .social-auth
-      = link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-sm btn-secondary google' do
+      = link_to user_google_omniauth_authorize_path, class: 'btn btn-sm btn-secondary google' do
         i.fa.fa-google.pull-left
         = t('sign_in_with_google')
       end
