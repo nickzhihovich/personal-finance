@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :transactions, dependent: :destroy
+  has_many :authorizations, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 
