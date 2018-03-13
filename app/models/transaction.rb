@@ -1,6 +1,7 @@
 class Transaction < ApplicationRecord
   belongs_to :user
 
-  validates :amount, :date, presence: true
-  validates :amount, numericality: true
+  validates :amount, :date, :user, presence: true
+  validates :amount, numericality: {greater_than_or_equal_to: 0}
+  validates :comment, length: {maximum: 80}
 end
