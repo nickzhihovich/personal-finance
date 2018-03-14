@@ -5,9 +5,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of :password }
   it { is_expected.to have_many(:transactions).dependent(:destroy) }
   it { is_expected.to have_many(:authorizations).dependent(:destroy) }
-  it { is_expected have_many(:transactions).dependent(:destroy) }
-  it { is_expected have_many(:authorizations).dependent(:destroy) }
-  it { is_expected have_many(:categories).dependent(:destroy) }
+  it { is_expected.to have_many(:categories).dependent(:destroy) }
 
   describe 'creation' do
     let(:user) { create(:user) }

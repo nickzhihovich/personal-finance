@@ -4,7 +4,7 @@ RSpec.describe CategoriesController, type: :controller do
   let(:user) { create(:user) }
   let(:category) { create(:category, user: user) }
 
-  before(:each) do
+  before do
     login_user user
   end
 
@@ -43,11 +43,11 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
 
-    context 'where not valid' do
+    context 'when not valid' do
       it 'not creates new category' do
         expect do
           post :create, params: {category: {title: nil}}
-        end.to_not change(Category, :count)
+        end.not_to change(Category, :count)
       end
 
       it 'redirect to categories path' do
@@ -70,11 +70,16 @@ RSpec.describe CategoriesController, type: :controller do
         }
       end
 
-      before { put :update, params: params }
-
-      it 'updates category' do
+      before do
+        put :update, params: params
         category.reload
+      end
+
+      it 'updates category amount' do
         expect(category.amount).to eq(amount)
+      end
+
+      it 'updates category title' do
         expect(category.title).to eq(title)
       end
 
@@ -96,20 +101,23 @@ RSpec.describe CategoriesController, type: :controller do
         }
       end
 
-      before { put :update, params: params }
-
-      it 'not updates category' do
+      before do
+        put :update, params: params
         category.reload
+      end
+
+      it 'not updates category amount' do
         expect(category.amount).to eq(init_amount)
+      end
+
+      it 'not updates category title' do
         expect(category.title).to eq(init_title)
       end
 
       it 'redirect to categories path' do
         put :update, params: {
           id: category.id,
-          category: attributes_for(:category,
-            amount: nil,
-            title: nil)
+          category: attributes_for(:category, amount: nil, title: nil)
         }
         expect(response).to redirect_to categories_path
       end
