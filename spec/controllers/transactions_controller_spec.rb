@@ -4,7 +4,7 @@ RSpec.describe TransactionsController, type: :controller do
   let(:user) { create(:user) }
   let(:transaction) { create(:transaction, user: user) }
 
-  before(:each) do
+  before do
     login_user user
   end
 
@@ -50,11 +50,11 @@ RSpec.describe TransactionsController, type: :controller do
       end
     end
 
-    context 'where not valid' do
+    context 'when not valid' do
       it 'not creates new transaction' do
         expect do
           post :create, params: {transaction: {amount: nil}}
-        end.to_not change(Transaction, :count)
+        end.not_to change(Transaction, :count)
       end
 
       it 'render :new template' do
@@ -77,11 +77,16 @@ RSpec.describe TransactionsController, type: :controller do
         }
       end
 
-      before { put :update, params: params }
-
-      it 'updates transaction' do
+      before do
+        put :update, params: params
         transaction.reload
+      end
+
+      it 'updates transaction amount' do
         expect(transaction.amount).to eq(amount)
+      end
+
+      it 'updates transaction date' do
         expect(transaction.date).to eq(date)
       end
 
@@ -103,20 +108,23 @@ RSpec.describe TransactionsController, type: :controller do
         }
       end
 
-      before { put :update, params: params }
-
-      it 'not updates transaction' do
+      before do
+        put :update, params: params
         transaction.reload
+      end
+
+      it 'transaction not updates when invalid amount' do
         expect(transaction.amount).to eq(init_amount)
+      end
+
+      it 'transaction not updates when invalid date' do
         expect(transaction.date).to eq(init_date)
       end
 
       it 'render :edit template' do
         put :update, params: {
           id: transaction.id,
-          transaction: attributes_for(:transaction,
-            amount: nil,
-            date: nil)
+          transaction: attributes_for(:transaction, amount: nil, date: nil)
         }
         expect(response).to render_template :edit
       end

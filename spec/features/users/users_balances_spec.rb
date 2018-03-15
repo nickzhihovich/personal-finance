@@ -1,15 +1,12 @@
 require 'rails_helper'
 
-RSpec.feature 'Users::Balances', type: :feature do
+RSpec.describe 'Users::Balances', type: :feature do
   let(:user) { create(:user) }
-  before do
-    10.times do
-      create(:transaction, user: user)
-    end
-    @balance = Users::Balance.new(user).balance
-  end
+  let(:balance) { Users::Balance.new(user).balance }
+  let!(:user_transactions) { create_list(:transaction, 10, user: user) }
+  let(:expected_balance) { user_transactions.map { |transaction| transaction.amount.to_i }.sum }
 
   it 'calculates sum of transitions' do
-    expect(@balance).to eq(user.transactions.map { |transaction| transaction.amount.to_i }.sum)
+    expect(balance).to eq(expected_balance)
   end
 end

@@ -1,5 +1,5 @@
 module ControllerHelpers
-  def login_user(user = double('user'), scope = :user)
+  def login_user(user = instance_double('user'), scope = :user)
     current_user = "current_#{scope}".to_sym
     if user.blank?
       allow(request.env['warden']).to receive(:authenticate!)
