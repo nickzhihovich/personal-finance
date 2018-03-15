@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      transactions: 'Transactions'
+      users: 'Users'
+    attributes:
+      user:
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Confirm password'
+        remember_me: 'Remember me'
+      transaction:
+        amount: 'Amount'
+        date: 'Date'
+        comment: 'Comment'
