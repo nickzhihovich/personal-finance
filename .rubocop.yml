@@ -201,3 +201,7 @@ Style/StructInheritance:
   Enabled: false
 
 require: rubocop-rspec
+
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/features/**/*"
