@@ -21,6 +21,10 @@ html
               = link_to activity_page_path, class: 'nav-link' do
                 i.fa.fa-fw.fa-link
                 span.nav-link-text= t('activity_page')
+            li.nav-item data-placement="right" data-toggle="tooltip" title="Link"
+              = link_to categories_path, class: 'nav-link' do
+                i.fa.fa-fw.fa-folder
+                span.nav-link-text= t('categories')
           ul.navbar-nav.sidenav-toggler
             li.nav-item
               a#sidenavToggler.nav-link.text-center
