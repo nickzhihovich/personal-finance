@@ -46,7 +46,7 @@ RSpec.describe TransactionsController, type: :controller do
 
       it 'redirects after create' do
         post :create, params: {transaction: attributes_for(:transaction)}
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to activity_page_path
       end
     end
 
@@ -59,7 +59,7 @@ RSpec.describe TransactionsController, type: :controller do
 
       it 'render :new template' do
         post :create, params: {transaction: {amount: nil}}
-        expect(response).to render_template :new
+        expect(response).to redirect_to activity_page_path
       end
     end
   end
@@ -92,7 +92,7 @@ RSpec.describe TransactionsController, type: :controller do
 
       it 'redirects after update' do
         put :update, params: {id: transaction.id, transaction: attributes_for(:transaction)}
-        expect(response).to redirect_to(root_path)
+        expect(response).to  redirect_to activity_page_path
       end
     end
 
@@ -126,7 +126,7 @@ RSpec.describe TransactionsController, type: :controller do
           id: transaction.id,
           transaction: attributes_for(:transaction, amount: nil, date: nil)
         }
-        expect(response).to render_template :edit
+        expect(response).to redirect_to activity_page_path
       end
     end
   end
