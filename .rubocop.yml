@@ -201,3 +201,7 @@ Lint/RequireParentheses:
 
 Style/StructInheritance:
   Enabled: false
+
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/features/**/*"

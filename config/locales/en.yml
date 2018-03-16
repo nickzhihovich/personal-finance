@@ -35,3 +35,6 @@ en:
   delete_transaction_seccess: 'You successfully delete transaction.'
   transaction_modal_title: 'Add transactions'
   update_transaction: 'Update transaction'
+  last_ten_transactions: 'Last 10 transactions'
+  home_page: 'Home page'
+  resend_unlock_instructions: 'Resend unlock instructions'
