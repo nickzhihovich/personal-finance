@@ -1,15 +1,9 @@
-class Users::Balance
-  def initialize(user)
-    @user = user
-  end
-
+class Users::Balance < Struct.new(:user)
   def balance
     transactions_amount.sum
   end
 
   private
-
-  attr_reader :user
 
   def transactions_amount
     user_transactions.map { |transaction| transaction.amount.to_i }

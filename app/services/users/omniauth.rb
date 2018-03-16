@@ -1,12 +1,6 @@
-class Users::Omniauth
-  attr_reader :auth
-
-  def initialize(auth)
-    @auth = auth
-  end
-
+class Users::Omniauth < Struct.new(:auth)
   def get
-    user
+    authorization_create
   end
 
   private
@@ -14,33 +8,19 @@ class Users::Omniauth
   delegate :provider, :uid, :info, to: :auth
   delegate :email, to: :info
 
-  def authorization
-    authorization = Authorization.where(provider: provider, uid: uid).first
-    authorization ||= Authorization.new(provider: provider, uid: uid)
+  def authorization_create
+    authorization = user.authorizations.create_with(uid: uid).find_or_create_by(provider: provider)
     authorization.user
   end
 
+  def generate_password
+    Devise.friendly_token[0, 20]
+  end
+
   def user
-    user = User.where(email: email).first
-    user_create(user)
-  end
-
-  def create_user_for_authorization
-    if authorization.blank?
-      authoriz = authorization
-      authoriz.user = user
-      authoriz.save
+    @_user ||= User.find_or_create_by(email: email) do |user|
+      user.password = generate_password
+      user.confirmed_at = Date.current
     end
-    authorization
-  end
-
-  def user_create(user)
-    user ||= User.new(
-      email: email,
-      password: Devise.friendly_token[0, 20]
-    )
-    user.skip_confirmation!
-    user.save
-    user
   end
 end
