@@ -67,8 +67,7 @@ class TransactionsController < ApplicationController
   def transaction_params
     params.require(:transaction).permit(
       :amount,
-      :date,
-      :comment
+      :date
     )
   end
 end
