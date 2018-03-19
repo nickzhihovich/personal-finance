@@ -18,3 +18,4 @@ DuplicateMethodCall:
 TooManyStatements: 
   exclude: 
     - TransactionsController
+    - CategoriesController

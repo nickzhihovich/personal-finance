@@ -198,3 +198,10 @@ Style/StringLiterals:
 
 Lint/RequireParentheses:
   Enabled: true
+
+Style/StructInheritance:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/features/**/*"

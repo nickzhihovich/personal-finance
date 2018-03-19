@@ -7,4 +7,3 @@ h2= t('resend_confirmation_insrtuctions')
     = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
   .actions
     = f.submit t('resend_confirmation_insrtuctions')
-= render "devise/shared/links"

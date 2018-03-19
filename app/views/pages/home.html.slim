@@ -1,13 +1,13 @@
 - if user_signed_in?
   h2
-    | Add money
+    = t('add_money')
   =render 'transactions/form'
 
   .last-transactions
     h2
-      | Last transactions
+      = t('last_ten_transactions')
     = render 'transactions/transactions'
 - else
   h2
-    | Home page
+    = t('home_page')
 

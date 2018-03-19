@@ -8,4 +8,5 @@ Rails.application.routes.draw do
       match 'search', to: 'transactions#search', via: %i[get post], as: :search
     end
   end
+  resources :categories, except: :show
 end
