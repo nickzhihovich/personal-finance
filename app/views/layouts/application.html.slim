@@ -2,18 +2,17 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    title PersonalFinance
+    title= t('personal_finance')
     = csrf_meta_tags
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
-    = stylesheet_pack_tag 'bootstrap'
+    = stylesheet_pack_tag 'style'
     = javascript_pack_tag 'application'
     = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 
   - if user_signed_in?
     body#page-top.fixed-nav.sticky-footer.bg-dark
       nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-        a.navbar-brand href="#{root_url}"  Start Bootstrap
+        a.navbar-brand href="#{root_url}"
+          = t('personal_finance')
         button.navbar-toggler.navbar-toggler-right aria-controls="navbarResponsive" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarResponsive" data-toggle="collapse" type="button"
           span.navbar-toggler-icon
         #navbarResponsive.collapse.navbar-collapse
@@ -21,24 +20,26 @@ html
             li.nav-item data-placement="right" data-toggle="tooltip" title="Link"
               = link_to activity_page_path, class: 'nav-link' do
                 i.fa.fa-fw.fa-link
-                span.nav-link-text Activity page
+                span.nav-link-text= t('activity_page')
           ul.navbar-nav.sidenav-toggler
             li.nav-item
               a#sidenavToggler.nav-link.text-center
                 i.fa.fa-fw.fa-angle-left
           ul.navbar-nav.ml-auto
+            span.balance
+              b
+                = t('balance')
+                | :
+              = current_user.balance
             = link_to edit_user_registration_path, class: 'nav-link' do
               i.fa.fa-fw.fa-pencil
-              | Edit
+              = t('edit_profile')
             = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
               i.fa.fa-fw.fa-sign-out
-              | Logout
+              = t('logout')
       .content-wrapper
         .container-fluid
-          p class="notice"
-            = notice
-          p class="alert"
-            = alert
+          = render 'layouts/notice' 
           = yield
         footer.sticky-footer
           .container
@@ -46,21 +47,28 @@ html
               small Copyright © 2018
         a.scroll-to-top.rounded href="#page-top"
           i.fa.fa-angle-up
+    div id="modal-window" class="modal hide fade" role="dialog" aria-hidden="true"
+      .modal-dialog role="document"
+        .modal-content
+          .modal-header
+            h5.modal-title
+            button.close aria-label="Close" data-dismiss="modal" type="button"
+              span aria-hidden="true"  ×
+          .modal-body
+
   - else
     body#page-top.fixed-nav
       nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-        a.navbar-brand href="#{root_url}"  Start Bootstrap
+        a.navbar-brand href="#{root_url}"
+          = t('personal_finance')
         button.navbar-toggler.navbar-toggler-right aria-controls="navbarResponsive" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarResponsive" data-toggle="collapse" type="button"
           span.navbar-toggler-icon
         #navbarResponsive.collapse.navbar-collapse
           ul.navbar-nav.ml-auto
-            = link_to 'Login', new_user_session_path, class: 'nav-link'
-            = link_to "Sign up", new_user_registration_path, class: 'nav-link'
+            = link_to t('log_in'), new_user_session_path, class: 'nav-link'
+            = link_to t('sign_up'), new_user_registration_path, class: 'nav-link'
       .container
-        p class="notice"
-          = notice
-        p class="alert"
-          = alert
+        = render 'layouts/notice'
         = yield
       a.scroll-to-top.rounded href="#page-top"
         i.fa.fa-angle-up

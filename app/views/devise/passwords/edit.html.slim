@@ -3,7 +3,7 @@ h2= t('сhange_password')
   = devise_error_messages!
   = f.hidden_field :reset_password_token
   .form-group
-    = f.label :password, "New password"
+    = f.label :password
     - if @minimum_password_length
       em
         | (
@@ -12,8 +12,7 @@ h2= t('сhange_password')
         | )
     = f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control'
   .form-group
-    = f.label :password_confirmation, t('confirm_new_password')
+    = f.label :password_confirmation
     = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
   .actions
     = f.submit t('сhange_password')
-= render "devise/shared/links"

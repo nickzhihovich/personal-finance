@@ -38,11 +38,13 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.0'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.7'
+  gem 'rubocop-rspec'
 end
 
 group :development do
   gem 'letter_opener'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'pry-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'

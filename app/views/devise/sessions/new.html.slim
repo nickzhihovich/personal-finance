@@ -1,18 +1,26 @@
-h2= t('log_in')
-= link_to t('sign_in_with_google'), user_google_omniauth_authorize_path
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    br/
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit t('log_in')
-= render "devise/shared/links"
+.card.card-login.mx-auto.mt-5
+  .card-header= t('log_in')
+  .card-body
+    .social-auth
+      = link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-sm btn-secondary google' do
+        i.fa.fa-google.pull-left
+        = t('sign_in_with_google')
+      end
+      = link_to user_github_omniauth_authorize_path, class: 'btn btn-sm btn-info github pull-right' do
+        i.fa.fa-github.pull-left
+        = t('sign_in_with_github')
+      end
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .form-group
+        = f.label :email
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+      .form-group
+        = f.label :password
+        = f.password_field :password, autocomplete: "off", class: 'form-control'
+      .form-group
+        = f.check_box :remember_me
+        = f.label :remember_me
+      = f.submit "Log in", class: 'btn btn-primary btn-block'
+    .text-center
+      = link_to t('sign_up'), new_user_registration_path, class: 'd-block small mt-3'
+      = link_to t('reset_password'), new_user_password_path, class: 'd-block small'

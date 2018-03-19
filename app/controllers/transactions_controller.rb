@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :find_transaction, only: %i[update edit]
+  before_action :find_transaction, only: %i[update destroy edit]
   before_action :search_for_transactions, only: %i[index search]
 
   def index
@@ -16,9 +16,14 @@ class TransactionsController < ApplicationController
   def create
     @transaction = current_user.transactions.new(transaction_params)
     if @transaction.save
-      redirect_to root_path
+      flash[:notice] = t('transaction_create')
     else
-      render 'new'
+      flash[:alert] = t('transaction_not_create')
+    end
+
+    respond_to do |format|
+      format.html { redirect_to activity_page_path }
+      format.js
     end
   end
 
@@ -27,9 +32,24 @@ class TransactionsController < ApplicationController
 
   def update
     if @transaction.update(transaction_params)
-      redirect_to root_path
+      flash[:notice] = t('transaction_update')
     else
-      render 'edit'
+      flash[:alert] = t('transaction_not_update')
+    end
+
+    respond_to do |format|
+      format.html { redirect_to activity_page_path }
+      format.js
+    end
+  end
+
+  def destroy
+    @transaction.destroy
+
+    flash[:notice] = t('delete_transaction_seccess')
+    respond_to do |format|
+      format.html { redirect_to activity_page_path }
+      format.js
     end
   end
 
