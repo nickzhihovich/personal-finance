@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
     let(:user) { create(:user) }
     let!(:transaction1) { create(:transaction, user: user) }
     let!(:transaction2) { create(:transaction, user: user) }
-    let(:expected_balance) { transaction1.amount.to_i + transaction2.amount.to_i }
+    let(:expected_balance) { transaction1.amount + transaction2.amount }
 
     it 'calculates sum of transitions' do
       expect(user.balance).to eq(expected_balance)

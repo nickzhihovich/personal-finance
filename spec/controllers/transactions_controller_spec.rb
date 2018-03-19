@@ -66,7 +66,7 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe 'PUT #update' do
     context 'when valid' do
-      let(:amount) { Faker::Number.digit }
+      let(:amount) { Faker::Number.digit.to_i }
       let(:date) { Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.current) }
       let(:params) do
         {

@@ -15,12 +15,13 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = current_user.transactions.new(transaction_params)
+    if @transaction.save
+      flash[:notice] = t('transaction_create')
+    else
+      flash[:alert] = t('transaction_not_create')
+    end
+
     respond_to do |format|
-      if @transaction.save
-        flash[:notice] = t('transaction_create')
-      else
-        flash[:alert] = t('transaction_not_create')
-      end
       format.html { redirect_to activity_page_path }
       format.js
     end
@@ -30,12 +31,13 @@ class TransactionsController < ApplicationController
   end
 
   def update
+    if @transaction.update(transaction_params)
+      flash[:notice] = t('transaction_update')
+    else
+      flash[:alert] = t('transaction_not_update')
+    end
+
     respond_to do |format|
-      if @transaction.update(transaction_params)
-        flash[:notice] = t('transaction_update')
-      else
-        flash[:alert] = t('transaction_not_update')
-      end
       format.html { redirect_to activity_page_path }
       format.js
     end
@@ -44,8 +46,8 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
 
+    flash[:notice] = t('delete_transaction_seccess')
     respond_to do |format|
-      flash[:notice] = t('delete_transaction_seccess')
       format.html { redirect_to activity_page_path }
       format.js
     end

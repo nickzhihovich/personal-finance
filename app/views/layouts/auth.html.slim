@@ -9,14 +9,5 @@ html
     = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
   body.bg-dark
     .container
-      - if notice
-        .alert.alert-success.close aria-label="Close"
-          button.close aria-label="Close" data-dismiss="alert" type="button"
-            span aria-hidden="true"  ×
-          = notice
-      - if alert
-        .alert.alert-danger.close aria-label="Close"
-          button.close aria-label="Close" data-dismiss="alert" type="button"
-            span aria-hidden="true"  ×
-          = alert
+      = render 'layouts/notice' 
       = yield
