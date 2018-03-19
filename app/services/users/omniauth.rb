@@ -1,6 +1,6 @@
 class Users::Omniauth < Struct.new(:auth)
   def get
-    authorization_create
+    authorization_user
   end
 
   private
@@ -8,13 +8,9 @@ class Users::Omniauth < Struct.new(:auth)
   delegate :provider, :uid, :info, to: :auth
   delegate :email, to: :info
 
-  def authorization_create
+  def authorization_user
     authorization = user.authorizations.create_with(uid: uid).find_or_create_by(provider: provider)
     authorization.user
-  end
-
-  def generate_password
-    Devise.friendly_token[0, 20]
   end
 
   def user
@@ -22,5 +18,9 @@ class Users::Omniauth < Struct.new(:auth)
       user.password = generate_password
       user.confirmed_at = Date.current
     end
+  end
+
+  def generate_password
+    Devise.friendly_token[0, 20]
   end
 end
