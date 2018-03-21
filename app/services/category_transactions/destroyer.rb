@@ -1,8 +1,10 @@
 class CategoryTransactions::Destroyer < Struct.new(:transaction)
   def call
     return unless valid?
-    destroy_transaction
-    update_category_balance
+    ActiveRecord::Base.transaction do
+      destroy_transaction
+      update_category_balance
+    end
   end
 
   private
@@ -15,16 +17,16 @@ class CategoryTransactions::Destroyer < Struct.new(:transaction)
     category.update(amount: total_amount)
   end
 
-  def category
-    Category.find(transactinable.category_id)
-  end
-
   def total_amount
-    category.amount.to_i - amount
+    category.amount - amount
   end
 
   def valid?
-    category.amount.to_i > amount
+    category.amount >= amount
+  end
+
+  def category
+    @_category ||= Category.find(transactinable.category_id)
   end
 
   delegate :amount, :transactinable, to: :transaction

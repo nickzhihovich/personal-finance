@@ -10,12 +10,12 @@ class BalanceTransactions::Destroyer < Struct.new(:transaction)
     transaction.destroy
   end
 
-  def user
-    User.find(user_id)
+  def valid?
+    user.free_balance >= amount
   end
 
-  def valid?
-    user.balance - amount > user.free_balance
+  def user
+    @_user ||= User.find(user_id)
   end
 
   delegate :user_id, :amount, to: :transaction

@@ -1,8 +1,10 @@
 class BetweenCategoriesTransactions::Destroyer < Struct.new(:transaction)
   def call
     return unless valid?
-    destroy_transaction
-    update_categories_balance
+    ActiveRecord::Base.transaction do
+      destroy_transaction
+      transfer_money_between_categories
+    end
   end
 
   private
@@ -11,29 +13,24 @@ class BetweenCategoriesTransactions::Destroyer < Struct.new(:transaction)
     transaction.destroy
   end
 
-  def update_categories_balance
-    category_from.update(amount: category_from_total_amount)
-    category_to.update(amount: category_to_total_amount)
-  end
-
-  def category_from
-    Category.find(transactinable.category_from_id)
-  end
-
-  def category_to
-    Category.find(transactinable.category_to_id)
-  end
-
-  def category_from_total_amount
-    category_from.amount.to_i + transaction.amount
-  end
-
-  def category_to_total_amount
-    category_to.amount.to_i - transaction.amount
+  def transfer_money_between_categories
+    Categories::BalanceTransferer.new(
+      category_from: category_to,
+      category_to: category_from,
+      amount: amount
+    ).transfer
   end
 
   def valid?
-    category_to.amount.to_i > amount
+    category_to.amount >= amount
+  end
+
+  def category_from
+    @_category_from ||= Category.find(transactinable.category_from_id)
+  end
+
+  def category_to
+    @_category_to ||= Category.find(transactinable.category_to_id)
   end
 
   delegate :amount, :transactinable, to: :transaction
