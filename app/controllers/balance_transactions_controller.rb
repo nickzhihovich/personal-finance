@@ -18,10 +18,11 @@ class BalanceTransactionsController < ApplicationController
   end
 
   def edit
+    @balance_transaction = BalanceTransactionsForm.new(params[:id])
   end
 
   def update
-    if @transaction.update(transaction_params)
+    if @balance_transaction = Transactions::BalanceTransactionsService.new(balance_transaction_params, @transaction).update
       flash[:notice] = t('transaction_update')
     else
       flash[:alert] = t('transaction_not_update')
@@ -45,6 +46,6 @@ class BalanceTransactionsController < ApplicationController
   end
 
   def find_balance_transaction
-    @balance_transaction = Transaction.find(params[:id])
+    @transaction = Transaction.find(params[:id])
   end
 end

@@ -1,6 +1,1 @@
-= simple_form_for :balance_transaction, url: balance_transactions_path, method: :patch do |f|
-  = f.input :amount
-  = f.input :date
-  = f.input :comment
-  = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
-  = f.button :submit, t('add_transaction'), class: 'btn btn-outline-success'
+= render 'balance_transactions/form_edit'
