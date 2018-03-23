@@ -199,9 +199,6 @@ Style/StringLiterals:
 Lint/RequireParentheses:
   Enabled: true
 
-Rails/CreateTableWithTimestamps:
-  Enabled: false
-
 Rails/HasManyOrHasOneDependent:
   Enabled: false
 

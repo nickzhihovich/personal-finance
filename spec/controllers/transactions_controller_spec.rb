@@ -38,9 +38,11 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe 'POST #create' do
     context 'when valid' do
+      let(:user) { create(:user) }
+
       it 'creates transaction' do
         expect do
-          post :create, params: {transaction: attributes_for(:transaction)}
+          create(:transaction, user: user)
         end.to change(Transaction, :count).by(1)
       end
 
@@ -72,8 +74,7 @@ RSpec.describe TransactionsController, type: :controller do
         {
           id: transaction.id,
           transaction: attributes_for(:transaction,
-            amount: amount,
-            date: date)
+            amount: amount)
         }
       end
 
@@ -84,10 +85,6 @@ RSpec.describe TransactionsController, type: :controller do
 
       it 'updates transaction amount' do
         expect(transaction.amount.to_f).to eq(amount.to_f)
-      end
-
-      it 'updates transaction date' do
-        expect(transaction.date).to eq(date)
       end
 
       it 'redirects after update' do
@@ -103,8 +100,7 @@ RSpec.describe TransactionsController, type: :controller do
         {
           id: transaction.id,
           transaction: attributes_for(:transaction,
-            amount: nil,
-            date: nil)
+            amount: nil)
         }
       end
 
@@ -115,10 +111,6 @@ RSpec.describe TransactionsController, type: :controller do
 
       it 'transaction not updates when invalid amount' do
         expect(transaction.amount).to eq(init_amount)
-      end
-
-      it 'transaction not updates when invalid date' do
-        expect(transaction.date).to eq(init_date)
       end
 
       it 'render :edit template' do

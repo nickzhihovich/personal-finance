@@ -10,7 +10,6 @@ RSpec.describe Transaction, type: :model do
       .is_greater_than_or_equal_to(0)
   }
   it { is_expected.to validate_presence_of :user }
-  it { is_expected.to validate_length_of(:comment).is_at_most(80) }
 
   it { is_expected.to belong_to(:user) }
 end

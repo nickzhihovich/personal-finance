@@ -8,8 +8,8 @@ namespace :user do
 
   desc 'Convert current transactions to balance transactions'
   task convert_transactions: :environment do
-    Transaction.all.each do |transaction|
-      balance_transaction = BalanceTransaction.create(comment: nil)
+    Transaction.find_each do |transaction|
+      balance_transaction = BalanceTransaction.create(comment: transaction.comment)
       transaction.update(transactinable_type: BalanceTransaction,
                          transactinable_id: balance_transaction.id)
     end
