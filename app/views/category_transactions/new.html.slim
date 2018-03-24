@@ -1,0 +1,13 @@
+h2
+  = t('add_money_to_category') 
+  = @category.title
+h3
+  | (
+  = t('available_money')
+  |: 
+  = current_user.free_balance
+  | )
+
+= simple_form_for :category_transaction, url: update_balance_category_path, method: :post do |f|
+  = f.input :amount
+  = f.button :submit, t('add_money'), class: 'btn btn-outline-success'

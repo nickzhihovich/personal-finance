@@ -6,7 +6,7 @@ class Users::Balance < Struct.new(:user)
   private
 
   def transactions_amount
-    user_transactions.sum(&:amount)
+    balance_transactions.sum(&:amount)
   end
 
   delegate :transactions, to: :user, prefix: true

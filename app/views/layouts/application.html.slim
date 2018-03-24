@@ -33,8 +33,11 @@ html
             span.balance
               b
                 = t('balance')
-                | :
+                | : 
+              = current_user.free_balance
+              | (
               = current_user.balance
+              | )
             = link_to edit_user_registration_path, class: 'nav-link' do
               i.fa.fa-fw.fa-pencil
               = t('edit_profile')

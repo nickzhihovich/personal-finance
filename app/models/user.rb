@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def balance
     Users::Balance.new(self).balance
   end
+
+  def free_balance
+    Users::FreeBalance.new(self).call
+  end
 end
