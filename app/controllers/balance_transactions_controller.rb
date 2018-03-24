@@ -1,12 +1,13 @@
 class BalanceTransactionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :create_new_form, only: %i[new create]
   before_action :find_balance_transaction, only: %i[edit update]
 
   def new
   end
 
   def create
-    @balance_transaction = BalanceTransactions::Creator.new(create_params)
+    @balance_transaction = BalanceTransactions::Creator.new(@form)
     if @balance_transaction.create
       flash[:notice] = t('transaction_create')
     else
@@ -36,6 +37,10 @@ class BalanceTransactionsController < ApplicationController
   end
 
   private
+
+  def create_new_form
+    @form = BalanceTransactions::Form.new(balance_transaction: BalanceTransaction.new, transactinable: Transaction.new)
+  end
 
   def create_params
     permitted_params.merge(user_id: current_user.id)

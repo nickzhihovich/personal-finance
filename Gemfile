@@ -8,6 +8,7 @@ end
 gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem "dry-validation"
 gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 gem 'omniauth'
 gem 'omniauth-github'
@@ -16,6 +17,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'pry-byebug'
 gem 'puma', '~> 3.7'
 gem 'reek'
+gem "reform", ">= 2.2.0"
+gem "reform-rails"
 gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
