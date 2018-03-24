@@ -2,13 +2,13 @@ class BalanceTransactionsForm
   extend ActiveModel::Naming
   include ActiveModel::Conversion
 
-  def initialize(transaction_id)
-    @transaction = Transaction.find(transaction_id)
-    @amount = @transaction.amount
-    @user_id = @transaction.user_id
-    @date = @transaction.transactinable.date
-    @comment = @transaction.transactinable.comment
+  def initialize(transaction_id = nil)
+    transaction = Transaction.find(transaction_id)
+    @amount = transaction.amount
+    balance_transaction = transaction.transactinable
+    @date = transaction.date
+    @comment = balance_transaction.comment
   end
 
-  attr_accessor :amount, :date, :user_id, :comment, :transaction_id
+  attr_reader :amount, :date, :comment
 end

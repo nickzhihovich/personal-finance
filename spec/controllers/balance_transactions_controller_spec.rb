@@ -57,37 +57,29 @@ RSpec.describe BalanceTransactionsController, type: :controller do
 
   describe 'PUT #update' do
     context 'when valid' do
-      let(:user) { create(:user) }
-      let(:date) { Faker::Date.between(1.year.ago, Date.current) }
-      let(:comment) { Faker::Internet.slug }
       let(:amount) { Faker::Number.between(100, 1000) }
-      let(:transaction) { create(:transaction) }
+      let(:balance_transaction) { create(:transaction) }
+      let(:attributes) { attributes_for(:transaction).merge(attributes_for(:balance_transaction)) }
 
       let(:params) do
-        {balance_transaction: {date: date, comment: comment, transaction_id: transaction.id,
-                               transactions_attributes: {amount: amount}},
-         id: transaction.id}
+        {
+          id: balance_transaction.id,
+          balance_transaction: attributes_for(:transaction,
+            amount: amount).merge(attributes_for(:balance_transaction))
+        }
       end
 
       before do
         put :update, params: params
-        transaction.reload
+        balance_transaction.reload
       end
 
       it 'updates transaction amount' do
-        expect(transaction.amount).to eq(amount)
-      end
-
-      it 'updates transaction #transactinable date' do
-        expect(transaction.transactinable.date).to eq(date)
-      end
-
-      it 'updates transaction #transactinable comment' do
-        expect(transaction.transactinable.comment).to eq(comment)
+        expect(balance_transaction.amount).to eq(amount)
       end
 
       it 'redirects after update' do
-        put :update, params: params
+        put :update, params: {id: balance_transaction.id, balance_transaction: attributes}
         expect(response).to  redirect_to activity_page_path
       end
     end

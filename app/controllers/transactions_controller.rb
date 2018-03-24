@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_transaction, only: :destroy
   before_action :search_for_transactions, only: %i[index search]
 

@@ -10,7 +10,7 @@ class Users::Balance < Struct.new(:user)
   end
 
   def balance_transactions
-    user_transactions.where(transactinable_type: 'BalanceTransaction')
+    user_transactions.balance_transactions
   end
 
   delegate :transactions, to: :user, prefix: true

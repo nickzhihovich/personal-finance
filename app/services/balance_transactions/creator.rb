@@ -12,10 +12,7 @@ class BalanceTransactions::Creator
   private
 
   def create_transaction
-    ActiveRecord::Base.transaction do
-      transaction = BalanceTransaction.create(comment: @params[:comment])
-      transaction.transactions.create(amount: @params[:amount], user_id: @params[:user_id],
-                                      date: @params[:date].to_date)
-    end
+    transaction = BalanceTransaction.create(comment: @params[:comment])
+    transaction.transactions.create(amount: @params[:amount], date: @params[:date].to_date, user_id: @params[:user_id])
   end
 end

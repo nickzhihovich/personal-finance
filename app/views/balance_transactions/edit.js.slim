@@ -1,2 +1,3 @@
 | $("#modal-window .modal-content .modal-body").html("#{escape_javascript(render 'balance_transactions/form_edit')}");
 | $("#modal-window .modal-content .modal-title").text("#{escape_javascript(t('update_transaction'))}");
+| $("#balance_transaction_date").datepicker({format: 'yyyy-mm-dd'});

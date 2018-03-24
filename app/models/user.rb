@@ -10,6 +10,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
     :confirmable, :omniauthable, omniauth_providers: %i[google github]
 
+  scope :balance_transactions, -> { transactions.where(transactinable_type: 'BalanceTransaction') }
+
   def balance
     Users::Balance.new(self).balance
   end
