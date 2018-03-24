@@ -11,7 +11,7 @@ namespace :user do
     Transaction.find_each do |transaction|
       balance_transaction = BalanceTransaction.create(comment: transaction.comment)
       transaction.update(transactinable_type: BalanceTransaction,
-                         transactinable_id: balance_trans.id)
+                         transactinable_id: balance_transaction.id)
     end
   end
 end

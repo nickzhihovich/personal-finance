@@ -25,7 +25,13 @@ RSpec.describe BalanceTransactionsController, type: :controller do
   describe 'POST #create' do
     context 'when valid' do
       let(:user) { create(:user) }
-      let(:attributes) { attributes_for(:transaction).merge(attributes_for(:balance_transaction)) }
+
+      let(:attributes) do
+        {
+          balance_transaction: attributes_for(:balance_transaction,
+            transactions_attributes: attributes_for(:transaction))
+        }
+      end
 
       it 'creates transaction' do
         expect do
@@ -34,13 +40,18 @@ RSpec.describe BalanceTransactionsController, type: :controller do
       end
 
       it 'redirects after create' do
-        post :create, params: {balance_transaction: attributes}
+        post :create, params: attributes
         expect(response).to redirect_to activity_page_path
       end
     end
 
     context 'when not valid' do
-      let(:attributes) { {amount: nil}.merge(attributes_for(:balance_transaction)) }
+      let(:attributes) do
+        {
+          balance_transaction: attributes_for(:balance_transaction,
+            transactions_attributes: attributes_for(:transaction, amount: nil))
+        }
+      end
 
       it 'not creates new transaction' do
         expect do
@@ -49,8 +60,8 @@ RSpec.describe BalanceTransactionsController, type: :controller do
       end
 
       it 'render :new template' do
-        post :create, params: {balance_transaction: attributes}
-        expect(response).to redirect_to activity_page_path
+        post :create, params: attributes
+        expect(response).to render_template :new
       end
     end
   end
@@ -59,13 +70,13 @@ RSpec.describe BalanceTransactionsController, type: :controller do
     context 'when valid' do
       let(:amount) { Faker::Number.between(100, 1000) }
       let(:balance_transaction) { create(:transaction) }
-      let(:attributes) { attributes_for(:transaction).merge(attributes_for(:balance_transaction)) }
 
       let(:params) do
         {
           id: balance_transaction.id,
-          balance_transaction: attributes_for(:transaction,
-            amount: amount).merge(attributes_for(:balance_transaction))
+          balance_transaction: attributes_for(:balance_transaction,
+            transactions_attributes: attributes_for(:transaction, amount: amount,
+                                                                  id: balance_transaction.id))
         }
       end
 
@@ -79,7 +90,7 @@ RSpec.describe BalanceTransactionsController, type: :controller do
       end
 
       it 'redirects after update' do
-        put :update, params: {id: balance_transaction.id, balance_transaction: attributes}
+        put :update, params: params
         expect(response).to  redirect_to activity_page_path
       end
     end
@@ -87,11 +98,13 @@ RSpec.describe BalanceTransactionsController, type: :controller do
     context 'when not valid' do
       let(:init_amount) { transaction.amount }
       let(:init_date) { transaction.date }
+
       let(:params) do
         {
           id: transaction.id,
-          balance_transaction: attributes_for(:transaction,
-            amount: nil, date: nil)
+          balance_transaction: attributes_for(:balance_transaction,
+            transactions_attributes: attributes_for(:transaction,
+              amount: nil, data: nil, id: transaction.id))
         }
       end
 
@@ -105,11 +118,8 @@ RSpec.describe BalanceTransactionsController, type: :controller do
       end
 
       it 'render :edit template' do
-        put :update, params: {
-          id: transaction.id,
-          balance_transaction: attributes_for(:transaction, amount: nil, date: nil)
-        }
-        expect(response).to redirect_to activity_page_path
+        put :update, params: params
+        expect(response).to render_template :edit
       end
     end
   end

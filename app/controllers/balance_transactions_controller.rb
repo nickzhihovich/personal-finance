@@ -50,12 +50,12 @@ class BalanceTransactionsController < ApplicationController
     params_to_hash.merge(transaction_id: permitted_params[:transactions_attributes][:id])
   end
 
-  def transaction
-    @_transaction ||= Transaction.find(params[:id])
-  end
-
   def balance_transaction
     @_balance_transaction ||= transaction.transactinable
+  end
+
+  def transaction
+    @_transaction ||= Transaction.find(params[:id])
   end
 
   def params_to_hash

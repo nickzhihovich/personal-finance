@@ -1,19 +1,29 @@
 class BalanceTransactions::Creator
-  Params = Struct.new(:date, :comment, :amount, :user_id)
-
-  def initialize(params)
-    @params = Params.new(params[:date], params[:comment], params[:amount], params[:user_id])
+  def initialize(date:, comment:, amount:, user_id:)
+    @date = date
+    @comment = comment
+    @amount = amount
+    @user_id = user_id
   end
 
   def create
-    create_transaction
+    ActiveRecord::Base.transaction do
+      create_balance_transaction
+      add_transaction_to_user
+    end
   end
 
   private
 
-  def create_transaction
-    transaction = BalanceTransaction.create(comment: @params[:comment])
-    transaction.transactions.create(amount: @params[:amount], date: @params[:date].to_date,
-                                    user_id: @params[:user_id])
+  def create_balance_transaction
+    @transaction = BalanceTransaction.create(comment: @comment)
+  end
+
+  def add_transaction_to_user
+    @transaction.transactions.create(
+      amount: @amount,
+      date: @date.to_date,
+      user_id: @user_id
+    )
   end
 end
