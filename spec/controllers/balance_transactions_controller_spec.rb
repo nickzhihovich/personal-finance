@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BalanceTransactionsController, type: :controller do
   let(:user) { create(:user) }
-  let(:transaction) { create(:transaction, user: user) }
+  let(:transaction) { create(:transaction, :balance_trans, user: user) }
 
   before do
     login_user user
@@ -35,7 +35,7 @@ RSpec.describe BalanceTransactionsController, type: :controller do
 
       it 'creates transaction' do
         expect do
-          create(:transaction, user: user)
+          create(:transaction, :balance_trans, user: user)
         end.to change(Transaction, :count).by(1)
       end
 
