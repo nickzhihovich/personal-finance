@@ -13,6 +13,7 @@ class BalanceTransactions::Creator
 
   def create_transaction
     transaction = BalanceTransaction.create(comment: @params[:comment])
-    transaction.transactions.create(amount: @params[:amount], date: @params[:date].to_date, user_id: @params[:user_id])
+    transaction.transactions.create(amount: @params[:amount], date: @params[:date].to_date,
+                                    user_id: @params[:user_id])
   end
 end

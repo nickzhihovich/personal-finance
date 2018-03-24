@@ -2,7 +2,8 @@ class BalanceTransactions::Updater
   Params = Struct.new(:date, :comment, :amount, :transaction_id)
 
   def initialize(params)
-    @params = Params.new(params[:date], params[:comment], params[:amount], params[:transaction_id])
+    @params = Params.new(params[:date], params[:comment],
+      params[:amount], params[:transaction_id])
   end
 
   def update

@@ -1,37 +1,33 @@
 class BalanceTransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :create_new_form, only: %i[new create]
-  before_action :find_balance_transaction, only: %i[edit update]
+  before_action :create_edit_form, only: %i[edit update]
 
   def new
   end
 
   def create
-    @balance_transaction = BalanceTransactions::Creator.new(@form)
-    if @balance_transaction.create
-      flash[:notice] = t('transaction_create')
+    if @form.validate(permitted_params)
+      BalanceTransactions::Creator.new(create_params).create
+      redirect_to activity_page_path, flash: {notice: t('transaction_create')}
     else
-      flash[:alert] = t('transaction_not_create')
-    end
-    respond_to do |format|
-      format.html { redirect_to activity_page_path }
-      format.js
+      render :new
     end
   end
 
   def edit
-    @balance_transaction = BalanceTransactionsForm.new(params[:id])
   end
 
   def update
-    if BalanceTransactions::Updater.new(update_params).update
-      flash[:notice] = t('transaction_update')
+    if @form.validate(permitted_params)
+      BalanceTransactions::Updater.new(update_params).update
+      redirect_to activity_page_path, flash: {notice: t('transaction_update')}
     else
-      flash[:alert] = t('transaction_not_update')
+      render :edit
     end
 
     respond_to do |format|
-      format.html { redirect_to activity_page_path }
+      format.html
       format.js
     end
   end
@@ -39,26 +35,41 @@ class BalanceTransactionsController < ApplicationController
   private
 
   def create_new_form
-    @form = BalanceTransactions::Form.new(balance_transaction: BalanceTransaction.new, transactinable: Transaction.new)
+    @form = BalanceTransactionForm.new(BalanceTransaction.new, transactions: Transaction.new)
+  end
+
+  def create_edit_form
+    @form = BalanceTransactionForm.new(balance_transaction, transactions: transaction)
   end
 
   def create_params
-    permitted_params.merge(user_id: current_user.id)
+    params_to_hash.merge(user_id: current_user.id)
   end
 
   def update_params
-    permitted_params.merge(transaction_id: @transaction.id)
+    params_to_hash.merge(transaction_id: permitted_params[:transactions_attributes][:id])
+  end
+
+  def transaction
+    @_transaction ||= Transaction.find(params[:id])
+  end
+
+  def balance_transaction
+    @_balance_transaction ||= transaction.transactinable
+  end
+
+  def params_to_hash
+    {
+      date: permitted_params[:transactions_attributes][:date],
+      comment: permitted_params[:comment],
+      amount: permitted_params[:transactions_attributes][:amount]
+    }
   end
 
   def permitted_params
     params.require(:balance_transaction).permit(
-      :amount,
-      :date,
-      :comment
+      :comment,
+      transactions_attributes: %i[id amount date]
     )
-  end
-
-  def find_balance_transaction
-    @transaction = Transaction.find(params[:id])
   end
 end

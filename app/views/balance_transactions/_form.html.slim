@@ -1,4 +1,6 @@
-= simple_form_for @form, url: balance_transactions_path do |f|
-  = f.input :amount
-  = f.input :date, as: :string, order: [:day, :month, :year]
+= simple_form_for @form do |f|
+  = f.simple_fields_for :transactions do |t|
+    = t.input :amount
+    = t.input :date, as: :string, order: [:day, :month, :year]
+  = f.input :comment
   = f.button :submit, t('add_transaction'), class: 'btn btn-outline-success'

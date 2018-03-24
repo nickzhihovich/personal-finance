@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, except: :show
-  resources :balance_transactions, except: %i[index show]
+  resources :balance_transactions, except: %i[index show destroy]
 end
