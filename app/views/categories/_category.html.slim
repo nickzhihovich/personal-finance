@@ -5,6 +5,5 @@ li.list-group-item.d-flex.justify-content-between.align-items-center
       = t('budget')
       | : 
       = category.amount
-    = link_to add_money_category_path(category) do
+    = link_to add_money_category_path(category), {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window' } do
       i.fa.fa-money aria-hidden="true" 
-

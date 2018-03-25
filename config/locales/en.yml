@@ -50,3 +50,4 @@ en:
   deleted_category_seccess: 'You successfully delete category.'
   categories: 'Categories'
   category_transaction_not_create: 'Transaction not create.'
+  add_money_to_category_modal_title: 'Add money to category'
