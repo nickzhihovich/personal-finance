@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CategoryTransactionsController, type: :controller do
   let(:user) { create(:user) }
-  let(:transaction) { create(:transaction, :category_trans, user: user) }
+  let(:transaction) { create(:transaction, :category_transactions, user: user) }
   let(:category) { create(:category, user: user) }
 
   before do
@@ -22,7 +22,7 @@ RSpec.describe CategoryTransactionsController, type: :controller do
 
       it 'creates transaction' do
         expect do
-          create(:transaction, :category_trans, user: user)
+          create(:transaction, :category_transactions, user: user)
         end.to change(CategoryTransaction, :count).by(1)
       end
     end

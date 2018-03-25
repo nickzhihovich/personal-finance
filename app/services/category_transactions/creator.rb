@@ -1,8 +1,8 @@
 class CategoryTransactions::Creator
-  Params = Struct.new(:amount, :user_id, :category_id)
-
-  def initialize(params)
-    @params = Params.new(params[:amount], params[:user_id], params[:category_id])
+  def initialize(amount:, user_id:, category_id:)
+    @amount = amount
+    @user_id = user_id
+    @category_id = category_id
   end
 
   def create
@@ -17,11 +17,11 @@ class CategoryTransactions::Creator
   private
 
   def create_category_transaction
-    @transaction = CategoryTransaction.create(category_id: @params[:category_id])
+    @transaction = CategoryTransaction.create(category_id: @category_id)
   end
 
   def create_transaction
-    @transaction.transactions.create(amount: @params[:amount], user_id: @params[:user_id],
+    @transaction.transactions.create(amount: @amount, user_id: @user_id,
                                      date: Date.current)
   end
 
@@ -30,18 +30,18 @@ class CategoryTransactions::Creator
   end
 
   def total_amount
-    category.amount + @params[:amount]
+    category.amount + @amount
   end
 
   def category
-    Category.find(@params[:category_id])
+    Category.find(@category_id)
   end
 
   def valid?
-    user.free_balance >= @params[:amount]
+    user.free_balance >= @amount
   end
 
   def user
-    User.find(@params[:user_id])
+    User.find(@user_id)
   end
 end

@@ -4,11 +4,11 @@ FactoryBot.define do
     amount { Faker::Number.decimal(3, 2) }
     date { Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.current) }
 
-    trait :balance_trans do
+    trait :balance_transactions do
       transactinable { |transaction| transaction.association(:balance_transaction) }
     end
 
-    trait :category_trans do
+    trait :category_transactions do
       transactinable { |transaction| transaction.association(:category_transaction) }
     end
   end
