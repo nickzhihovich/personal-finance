@@ -17,4 +17,7 @@ class User < ApplicationRecord
   def free_balance
     Users::FreeBalance.new(self).call
   end
+
+  delegate :balance_transactions, to: :transactions
+  delegate :category_transactions, to: :transactions
 end
