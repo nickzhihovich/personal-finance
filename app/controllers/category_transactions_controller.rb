@@ -6,13 +6,13 @@ class CategoryTransactionsController < ApplicationController
   end
 
   def create
-    @category_transaction = CategoryTransactions::Creator.new(category_transaction_params)
+    if category_transaction_creator.create
+      flash[:notice] = t('transaction_create')
+    else
+      flash[:alert] = t('category_transaction_not_create')
+    end
+
     respond_to do |format|
-      if @category_transaction.call
-        flash[:notice] = t('transaction_create')
-      else
-        flash[:alert] = t('category_transaction_not_create')
-      end
       format.html { redirect_to categories_path }
       format.js
     end
@@ -20,10 +20,22 @@ class CategoryTransactionsController < ApplicationController
 
   private
 
-  def category_transaction_params
+  def category_transaction_creator
+    CategoryTransactions::Creator.new(create_params)
+  end
+
+  def create_params
+    {
+      user_id: current_user.id,
+      category_id: params[:id],
+      amount: permitted_params[:amount].to_f
+    }
+  end
+
+  def permitted_params
     params.require(:category_transaction).permit(
       :amount
-    ).merge(user_id: current_user.id, category_id: params[:id])
+    )
   end
 
   def find_category

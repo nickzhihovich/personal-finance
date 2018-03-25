@@ -5,19 +5,24 @@ class CategoryTransactions::Creator
     @params = Params.new(params[:amount], params[:user_id], params[:category_id])
   end
 
-  def call
+  def create
     return unless valid?
-    create_category_transaction
-    update_category_balance
+    ActiveRecord::Base.transaction do
+      create_category_transaction
+      create_transaction
+      update_category_balance
+    end
   end
 
   private
 
   def create_category_transaction
-    ActiveRecord::Base.transaction do
-      transaction = CategoryTransaction.create(category_id: @params[:category_id])
-      transaction.transactions.create(amount: @params[:amount], user_id: @params[:user_id])
-    end
+    @transaction = CategoryTransaction.create(category_id: @params[:category_id])
+  end
+
+  def create_transaction
+    @transaction.transactions.create(amount: @params[:amount], user_id: @params[:user_id],
+                                     date: Date.current)
   end
 
   def update_category_balance
@@ -25,7 +30,7 @@ class CategoryTransactions::Creator
   end
 
   def total_amount
-    category.amount.to_i + @params[:amount].to_i
+    category.amount + @params[:amount]
   end
 
   def category
@@ -33,7 +38,7 @@ class CategoryTransactions::Creator
   end
 
   def valid?
-    user.free_balance - @params[:amount].to_i >= 0
+    user.free_balance >= @params[:amount]
   end
 
   def user
