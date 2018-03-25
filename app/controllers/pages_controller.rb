@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   def home
     @form = BalanceTransactionForm.new(BalanceTransaction.new, transactions: Transaction.new)
-    @transactions = current_user.transactions.limit(10).order('id desc') if user_signed_in?
+    return unless user_signed_in?
+    @transactions = current_user.transactions.includes(:transactinable).limit(10).order('id desc')
+    @categories = current_user.categories
   end
 end

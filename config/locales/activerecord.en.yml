@@ -18,3 +18,6 @@ en:
           from_balance_to: 'Balance'
       balance_transaction:
         comment: 'Comment'
+  categories:
+    show:
+      budget: 'Budget'

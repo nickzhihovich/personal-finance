@@ -9,7 +9,11 @@
 
     = render 'transactions/table'
 
+  .home-categories
+    h2
+      = t('categories')
+    ul#category-list.list-group
+      = render partial: @categories
 - else
   h2
     = t('home_page')
-

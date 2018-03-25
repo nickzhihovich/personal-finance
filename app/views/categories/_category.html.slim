@@ -1,5 +1,5 @@
 li.list-group-item.d-flex.justify-content-between.align-items-center
-  = category.title
+  = link_to category.title, category_path(category)
   .balance_block
     span.badge.badge-primary.badge-pill
       = t('budget')
