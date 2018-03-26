@@ -1,5 +1,6 @@
 class Transaction < ApplicationRecord
   belongs_to :user
+  belongs_to :transactinable, dependent: :destroy, polymorphic: true
 
   validates :amount, :date, :user, presence: true
   validates :amount, format: {with: /\A\d+(?:\.\d{0,2})?\z/},

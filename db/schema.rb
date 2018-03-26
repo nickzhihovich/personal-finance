@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 20180323134330) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "balance_transactions", force: :cascade do |t|
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "between_categories_transactions", force: :cascade do |t|
+    t.integer "category_from_id"
+    t.integer "category_to_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "title"
     t.decimal "amount", precision: 8, scale: 2
@@ -31,13 +44,20 @@ ActiveRecord::Schema.define(version: 20180323134330) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "category_transactions", force: :cascade do |t|
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.decimal "amount", precision: 8, scale: 2
     t.date "date"
-    t.text "comment"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "transactinable_type"
+    t.integer "transactinable_id"
   end
 
   create_table "users", force: :cascade do |t|
