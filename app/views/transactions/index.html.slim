@@ -1,12 +1,6 @@
 h2= t('all_transactions')
 = link_to t('add_transaction'), new_transaction_path,  {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-primary'}
-= search_form_for @search, url: search_transactions_path, method: :post do |f|
-  = f.label :date
-  = f.text_field :date_gteq
-  span class='input-group-addon'
-    | to
-  = f.text_field :date_lteq
-  = f.submit
+
 = render 'transactions/transactions'
 
 nav aria-label="blah"

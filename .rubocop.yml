@@ -199,6 +199,12 @@ Style/StringLiterals:
 Lint/RequireParentheses:
   Enabled: true
 
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
 Style/StructInheritance:
   Enabled: false
 

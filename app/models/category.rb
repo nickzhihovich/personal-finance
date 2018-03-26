@@ -1,5 +1,6 @@
 class Category < ApplicationRecord
   belongs_to :user
+  has_many :category_transactions, dependent: :destroy
 
   validates :amount, :title, presence: true
   validates :amount, presence: true, format: {with: /\A\d+(?:\.\d{0,2})?\z/},
