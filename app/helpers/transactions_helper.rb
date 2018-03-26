@@ -11,6 +11,8 @@ module TransactionsHelper
       content_tag(:span, t('activerecord.attributes.transaction.types.to_balance'))
     when CategoryTransaction
       category_transaction_block(transactinable)
+    when BetweenCategoriesTransaction
+      content_tag(:p, 'From category to category')
     end
   end
 

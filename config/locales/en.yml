@@ -50,3 +50,7 @@ en:
   categories: 'Categories'
   category_transaction_not_create: 'Transaction not create.'
   add_money_to_category_modal_title: 'Add money to category'
+  transaction_from_category_to_category: 'Transaction from category to category'
+  move_money: 'Move money'
+  add_between_categories_transaction: 'Add between categories transaction'
+  select_category: 'Select category'
