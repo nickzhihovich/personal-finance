@@ -59,7 +59,7 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'PUT #update' do
     context 'when valid' do
-      let(:amount) { Faker::Number.digit }
+      let(:amount) { Faker::Number.decimal(3, 2) }
       let(:title) { Faker::Internet.user_name(5..15) }
       let(:params) do
         {
@@ -76,7 +76,7 @@ RSpec.describe CategoriesController, type: :controller do
       end
 
       it 'updates category amount' do
-        expect(category.amount).to eq(amount)
+        expect(category.amount.to_f).to eq(amount.to_f)
       end
 
       it 'updates category title' do
