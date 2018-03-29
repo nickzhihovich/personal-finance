@@ -24,7 +24,8 @@ class TransactionsController < ApplicationController
 
   def search_for_transactions
     @search = current_user.transactions.includes(:transactinable).ransack(params[:q])
-    @transactions = @search.result(distinct: true).paginate(page: params[:page], per_page: 10)
+    @transactions = @search.result(distinct: true)
+                           .paginate(page: params[:page], per_page: 10).order('id DESC')
   end
 
   def find_transaction

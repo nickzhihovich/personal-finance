@@ -1,6 +1,6 @@
 h2= t('all_transactions')
-= link_to t('add_transaction'), new_balance_transaction_path,  {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-primary'}
-= link_to t('add_between_categories_transaction'), new_between_categories_transaction_path, class: 'btn btn-primary'
+= link_to t('add_transaction'), new_balance_transaction_path, {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-primary'}
+= link_to t('add_between_categories_transaction'), new_between_categories_transaction_path, {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-primary'}
 
 = render 'transactions/table'
 

@@ -1,5 +1,5 @@
 h2= t('all_categories')
-= link_to t('add_between_categories_transaction'), new_between_categories_transaction_path, class: 'btn btn-primary'
+= link_to t('add_between_categories_transaction'), new_between_categories_transaction_path, {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-primary'}
 
 ul#category-list.list-group
   = render partial: @categories

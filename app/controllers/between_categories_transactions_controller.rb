@@ -7,13 +7,13 @@ class BetweenCategoriesTransactionsController < ApplicationController
 
   def create
     if between_categories_transaction_creator.create
-      flash[:notice] = t('transaction_create')
+      redirect_to activity_page_path, flash: {notice: t('transaction_create')}
     else
-      flash[:alert] = t('category_transaction_not_create')
+      render :new
     end
 
     respond_to do |format|
-      format.html { redirect_to categories_path }
+      format.html
       format.js
     end
   end
@@ -21,7 +21,16 @@ class BetweenCategoriesTransactionsController < ApplicationController
   private
 
   def between_categories_transaction_creator
-    BetweenCategoriesTransactions::Creator.new(permitted_params)
+    BetweenCategoriesTransactions::Creator.new(create_params)
+  end
+
+  def create_params
+    {
+      user_id: current_user.id,
+      category_from_id: permitted_params[:category_from_id],
+      category_to_id: permitted_params[:category_to_id],
+      amount: permitted_params[:amount].to_f
+    }
   end
 
   def permitted_params
@@ -29,6 +38,6 @@ class BetweenCategoriesTransactionsController < ApplicationController
       :amount,
       :category_from_id,
       :category_to_id
-    ).merge(user_id: current_user.id)
+    )
   end
 end

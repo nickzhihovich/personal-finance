@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :find_category, only: %i[show update destroy edit]
 
   def index
-    @categories = current_user.categories
+    @categories = current_user.categories.reverse
   end
 
   def show

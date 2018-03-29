@@ -1,13 +1,4 @@
 h2
   = t('transaction_from_category_to_category')
 
-= simple_form_for :between_categories_transaction, url: between_categories_transactions_path, method: :post do |f|
-  .row
-    .col
-      = f.input :category_from_id, collection: @categories, label_method: :to_label, prompt: t('select_category')
-    .col
-      = f.input :category_to_id, collection: @categories, label_method: :to_label, prompt: t('select_category')
-    .col
-      = f.input :amount
-
-  = f.button :submit, t('move_money'), class: 'btn btn-outline-success'
+= render 'between_categories_transactions/form'
