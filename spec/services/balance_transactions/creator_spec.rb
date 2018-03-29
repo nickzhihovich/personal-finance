@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'BalanceTransactions::Creator', type: :feature do
+describe BalanceTransactions::Creator do
   context 'when valid' do
     let(:user) { create(:user) }
     let(:date) { Faker::Date.between(1.year.ago, Date.current) }
@@ -10,13 +10,13 @@ RSpec.describe 'BalanceTransactions::Creator', type: :feature do
 
     it 'creates BalanceTransaction' do
       expect do
-        BalanceTransactions::Creator.new(params).create
+        described_class.new(params).create
       end.to change(BalanceTransaction, :count).by(1)
     end
 
     it 'creates Transaction' do
       expect do
-        BalanceTransactions::Creator.new(params).create
+        described_class.new(params).create
       end.to change(Transaction, :count).by(1)
     end
   end
@@ -29,7 +29,7 @@ RSpec.describe 'BalanceTransactions::Creator', type: :feature do
 
     it 'creates Transaction' do
       expect do
-        BalanceTransactions::Creator.new(params).create
+        described_class.new(params).create
       end.to change(Transaction, :count).by(0)
     end
   end
