@@ -22,8 +22,8 @@ RSpec.describe User, type: :model do
 
   describe '#balance' do
     let(:user) { create(:user) }
-    let!(:transaction1) { create(:transaction, user: user) }
-    let!(:transaction2) { create(:transaction, user: user) }
+    let!(:transaction1) { create(:transaction, :balance_transactions, user: user) }
+    let!(:transaction2) { create(:transaction, :balance_transactions, user: user) }
     let(:expected_balance) { transaction1.amount + transaction2.amount }
 
     it 'calculates sum of transitions' do

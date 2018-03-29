@@ -9,7 +9,10 @@ Rails.application.routes.draw do
       match 'search', to: 'transactions#search', via: %i[get post], as: :search
     end
   end
-
-  resources :categories, except: :show
   resources :balance_transactions, except: %i[index show destroy]
+
+  resources :categories do
+    get 'add_money', on: :member, to: 'category_transactions#new'
+    post 'update_balance', on: :member, to: 'category_transactions#create'
+  end
 end

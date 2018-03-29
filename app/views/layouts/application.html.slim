@@ -33,8 +33,11 @@ html
             span.balance
               b
                 = t('balance')
-                | :
+                | : 
+              = current_user.free_balance
+              | (
               = current_user.balance
+              | )
             = link_to edit_user_registration_path, class: 'nav-link' do
               i.fa.fa-fw.fa-pencil
               = t('edit_profile')
@@ -58,6 +61,7 @@ html
             h5.modal-title
             button.close aria-label="Close" data-dismiss="modal" type="button"
               span aria-hidden="true"  ×
+          .modal-info
           .modal-body
 
   - else
