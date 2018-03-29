@@ -44,9 +44,15 @@ $(document).on('turbolinks:load', function() {
     });
 
     $('#q_date_gteq').datepicker({
-        format: 'yyyy-mm-dd'
+        format: 'yyyy-mm-dd',
+        orientation: 'bottom'
     });
     $('#q_date_lteq').datepicker({
-        format: 'yyyy-mm-dd'
+        format: 'yyyy-mm-dd',
+        orientation: 'bottom'
+    });
+    $('#balance_transaction_transactions_attributes_date').datepicker({
+        format: 'yyyy-mm-dd',
+        orientation: 'bottom'
     });
 });

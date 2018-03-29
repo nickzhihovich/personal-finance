@@ -1,4 +1,0 @@
-= simple_form_for @transaction do |f|
-  = f.input :amount
-  = f.input :date, as: :date, order: [:day, :month, :year]
-  = f.button :submit, t('add_money'), class: 'btn btn-outline-success'
