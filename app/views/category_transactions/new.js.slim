@@ -1,4 +1,4 @@
-| $("#modal-window .modal-content .modal-body").html("#{escape_javascript(render 'category_transactions/form')}");
+| $("#modal-window .modal-content .modal-body .modal-form").html("#{escape_javascript(render 'category_transactions/form')}");
 | $("#modal-window .modal-content .modal-title").text("#{escape_javascript(t('add_money_to_category_modal_title'))}");
-| $("#modal-window .modal-content .modal-info").html("#{escape_javascript(render 'category_transactions/category_info')}");
+| $("#modal-window .modal-content .modal-body .modal-info").html("#{escape_javascript(render 'category_transactions/category_info')}");
 | $("#balance_transaction_transactions_attributes_date").datepicker({format: 'yyyy-mm-dd'});

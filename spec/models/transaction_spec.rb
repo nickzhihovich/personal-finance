@@ -12,4 +12,12 @@ RSpec.describe Transaction, type: :model do
   it { is_expected.to validate_presence_of :user }
 
   it { is_expected.to belong_to(:user) }
+
+  describe '#balance_type?' do
+    let(:transaction) { create(:transaction, :balance_transactions) }
+
+    it 'transaction type is BalanceTransaction' do
+      expect(transaction.balance_type?).to be true
+    end
+  end
 end

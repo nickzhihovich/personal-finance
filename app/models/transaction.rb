@@ -8,4 +8,8 @@ class Transaction < ApplicationRecord
 
   scope :balance_transactions, -> { where(transactinable_type: 'BalanceTransaction') }
   scope :category_transactions, -> { where(transactinable_type: 'CategoryTransaction') }
+
+  def balance_type?
+    transactinable_type == 'BalanceTransaction'
+  end
 end

@@ -11,5 +11,10 @@ en:
         remember_me: 'Remember me'
       transaction:
         amount: 'Amount'
+        type: 'Transaction type'
         date: 'Date'
+        types: 
+          to_balance: 'To balance'
+          from_balance_to: 'Balance'
+      balance_transaction:
         comment: 'Comment'
