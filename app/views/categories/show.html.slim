@@ -1,0 +1,10 @@
+h2
+  = @category.title
+h4
+  = t('.budget')
+  |  
+  = @category.amount
+
+= link_to add_money_category_path(@category), class: 'btn btn-primary' do
+  i.fa.fa-money.fa-lg
+  = t('add_money')

@@ -15,6 +15,15 @@ RSpec.describe CategoriesController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    let(:category) { create(:category, user: user) }
+
+    it 'renders show template' do
+      visit category_path(category)
+      expect(response.status).to eq(200)
+    end
+  end
+
   describe 'GET #edit' do
     it 'renders the :edit template' do
       get :edit, params: {id: category.id}

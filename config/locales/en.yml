@@ -20,7 +20,6 @@ en:
   all_transactions: 'All transactions'
   available_ money: 'Available money'
   balance: 'Balance'
-  budget: 'Budget'
   reset_password: 'Reset Password'
   how_reset_password: 'Enter your email address and we will send you instructions on how to reset your password.'
   confirm_new_password: 'Confirm new password'
