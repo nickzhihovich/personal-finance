@@ -13,13 +13,4 @@ RSpec.describe Category, type: :model do
   it { is_expected.to validate_length_of(:title).is_at_most(15) }
 
   it { is_expected.to belong_to(:user) }
-
-  describe '#to_label' do
-    let(:category) { create(:category) }
-    let(:expected) { "#{category.title} | #{category.amount}" }
-
-    it 'equal .title | .amount' do
-      expect(category.to_label).to eq(expected)
-    end
-  end
 end

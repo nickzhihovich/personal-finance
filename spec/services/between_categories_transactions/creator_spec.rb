@@ -28,18 +28,20 @@ describe BetweenCategoriesTransactions::Creator do
       end.to change(Transaction, :count).by(1)
     end
 
-    before do
-      described_class.new(params).create
-      category_from.reload
-      category_to.reload
-    end
+    context 'when transaction created update balance' do
+      before do
+        described_class.new(params).create
+        category_from.reload
+        category_to.reload
+      end
 
-    it 'Update category_from amount' do
-      expect(category_from.amount).to eq(amount_from - amount)
-    end
+      it 'Update category_from amount' do
+        expect(category_from.amount).to eq(amount_from - amount)
+      end
 
-    it 'Update category_to amount' do
-      expect(category_to.amount).to eq(init_category_to_amount + amount)
+      it 'Update category_to amount' do
+        expect(category_to.amount).to eq(init_category_to_amount + amount)
+      end
     end
   end
 
@@ -60,22 +62,18 @@ describe BetweenCategoriesTransactions::Creator do
        category_to_id: category_to.id}
     end
 
-    it 'creates BetweenCategoriesTransaction' do
-      expect do
-        described_class.new(params).create
-      end.to change(BetweenCategoriesTransaction, :count).by(0)
-    end
-
-    it 'creates Transaction' do
-      expect do
-        described_class.new(params).create
-      end.to change(Transaction, :count).by(0)
-    end
-
     before do
       described_class.new(params).create
       category_from.reload
       category_to.reload
+    end
+
+    it 'creates BetweenCategoriesTransaction' do
+      expect { }.to change(BetweenCategoriesTransaction, :count).by(0)
+    end
+
+    it 'creates Transaction' do
+      expect { }.to change(Transaction, :count).by(0)
     end
 
     it 'Update category_from amount' do

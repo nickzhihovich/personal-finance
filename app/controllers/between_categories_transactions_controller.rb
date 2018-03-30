@@ -2,7 +2,7 @@ class BetweenCategoriesTransactionsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @categories = current_user.categories
+    @categories = current_user.categories.decorate
   end
 
   def create
