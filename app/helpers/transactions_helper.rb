@@ -1,11 +1,11 @@
 module TransactionsHelper
-  def type_item(transactinable)
-    transaction_type(transactinable)
+  def transaction_type(transactinable)
+    transaction_block(transactinable)
   end
 
   private
 
-  def transaction_type(transactinable)
+  def transaction_block(transactinable)
     case transactinable
     when BalanceTransaction
       content_tag(:span, t('activerecord.attributes.transaction.types.to_balance'),

@@ -10,45 +10,51 @@ class BetweenCategoriesTransactions::Creator
     return unless valid?
     ActiveRecord::Base.transaction do
       create_between_category_transaction
-      update_categories_balance
+      create_transaction
+      transfer_money_between_categories
     end
   end
 
   private
 
   def create_between_category_transaction
-    transaction = BetweenCategoriesTransaction.create(category_from_id: @category_from_id,
-                                                      category_to_id: @category_to_id)
-    transaction.transactions.create(amount: @amount, user_id: @user_id,
-                                    date: Date.current)
+    @transaction = BetweenCategoriesTransaction.create(
+      category_from_id: @category_from_id,
+      category_to_id: @category_to_id
+    )
   end
 
-  def update_categories_balance
-    category_from.update(amount: category_from_amount)
-    category_to.update(amount: category_to_amount)
+  def create_transaction
+    @transaction.transactions.create(
+      amount: @amount,
+      user_id: @user_id,
+      date: Date.current
+    )
+  end
+
+  def transfer_money_between_categories
+    Categories::BalanceTransferer.new(
+      category_from: category_from,
+      category_to: category_to,
+      amount: @amount
+    ).transfer
   end
 
   def valid?
     category_from.amount >= @amount
   end
 
-  def category_from_amount
-    category_from.amount - @amount
-  end
-
   def category_from
-    user.categories.find(@category_from_id)
-  end
-
-  def category_to_amount
-    category_to.amount + @amount
+    @_category_from ||= user_categories.find(@category_from_id)
   end
 
   def category_to
-    user.categories.find(@category_to_id)
+    @_category_to ||= user_categories.find(@category_to_id)
   end
 
   def user
-    User.find(@user_id)
+    @_user ||= User.find(@user_id)
   end
+
+  delegate :categories, to: :user, prefix: true
 end

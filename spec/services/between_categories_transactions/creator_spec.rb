@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'BetweenCategoriesTransactions::Creator', type: :feature do
+describe BetweenCategoriesTransactions::Creator do
   context 'when valid' do
     let(:user) { create(:user) }
 
@@ -18,18 +18,18 @@ RSpec.describe 'BetweenCategoriesTransactions::Creator', type: :feature do
 
     it 'creates BetweenCategoriesTransaction' do
       expect do
-        BetweenCategoriesTransactions::Creator.new(params).create
+        described_class.new(params).create
       end.to change(BetweenCategoriesTransaction, :count).by(1)
     end
 
     it 'creates Transaction' do
       expect do
-        BetweenCategoriesTransactions::Creator.new(params).create
+        described_class.new(params).create
       end.to change(Transaction, :count).by(1)
     end
 
     before do
-      BetweenCategoriesTransactions::Creator.new(params).create
+      described_class.new(params).create
       category_from.reload
       category_to.reload
     end
@@ -62,18 +62,18 @@ RSpec.describe 'BetweenCategoriesTransactions::Creator', type: :feature do
 
     it 'creates BetweenCategoriesTransaction' do
       expect do
-        BetweenCategoriesTransactions::Creator.new(params).create
+        described_class.new(params).create
       end.to change(BetweenCategoriesTransaction, :count).by(0)
     end
 
     it 'creates Transaction' do
       expect do
-        BetweenCategoriesTransactions::Creator.new(params).create
+        described_class.new(params).create
       end.to change(Transaction, :count).by(0)
     end
 
     before do
-      BetweenCategoriesTransactions::Creator.new(params).create
+      described_class.new(params).create
       category_from.reload
       category_to.reload
     end
