@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    if @category.present?
+    if @category.valid?
       redirect_to @category, flash: {notice: t('category_created')}
     else
       render :new

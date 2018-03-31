@@ -65,7 +65,7 @@ en:
   filter_by_category: 'Filter by category'
   for_transaction_to_category: 'For transaction to category'
   for_transactions_between_categories: 'For transactions between categories'
-  choose_a_categories: 'Choose_a_categories'
+  choose_a_categories: 'Choose a categories'
   transactions_not_found: 'Transactions not found.'
   transaction:
     types:

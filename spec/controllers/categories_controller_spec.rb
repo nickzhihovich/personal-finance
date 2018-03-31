@@ -74,7 +74,7 @@ RSpec.describe CategoriesController, type: :controller do
 
       it 'redirect to categories path' do
         post :create, params: {category: {title: nil}}
-        expect(response).to redirect_to categories_path
+        expect(response).to render_template :new
       end
     end
   end
