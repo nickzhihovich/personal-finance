@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe CategoryTransactionsController, type: :controller do
   let(:user) { create(:user) }
   let(:transaction) { create(:transaction, :category_transactions, user: user) }
-  let(:category) { create(:category, user: user) }
+  let(:category) { create(:category, :main_category) }
 
   before do
     login_user user

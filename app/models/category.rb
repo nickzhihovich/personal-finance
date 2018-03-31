@@ -3,7 +3,9 @@ class Category < ApplicationRecord
   has_many :categories_from, class_name: 'BetweenCategoriesTransaction', foreign_key: 'category_from'
   has_many :categories_to, class_name: 'BetweenCategoriesTransaction', foreign_key: 'category_to'
   belongs_to :categorizable, polymorphic: true
-  has_many :categories, as: :categorizable, dependent: :destroy, inverse_of: :categorizable
+  has_many :categories, as: :categorizable, dependent: :destroy
+
+  scope :main_category, -> { where(categorizable_type: 'User') }
 
   validates :amount, :title, presence: true
   validates :amount, presence: true, format: {with: /\A\d+(?:\.\d{0,2})?\z/},

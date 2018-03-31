@@ -1,3 +1,5 @@
 = simple_form_for @category do |f|
   = f.input :title
+  = f.input :categorizable_type, as: :hidden
+  = f.input :categorizable_id, as: :hidden
   = f.button :submit, t('add_category'), class: 'btn btn-outline-success'

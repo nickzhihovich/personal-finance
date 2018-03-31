@@ -4,10 +4,11 @@ class CategoriesController < ApplicationController
   before_action :set_parent, only: %i[new create]
 
   def index
-    @categories = current_user.categories.reverse
+    @categories = current_user.categories.main_category
   end
 
   def show
+    @subcategories = @category.categories
   end
 
   def new
@@ -15,14 +16,14 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    if category_creator.create
-      redirect_to categories_path, flash: {notice: t('category_created')}
-    else
-      render :new
-    end
-
+    @category = Categories::Creator.new(category_params).call
     respond_to do |format|
-      format.html
+      if @category.save
+        flash[:notice] = t('category_created')
+      else
+        flash[:alert] = t('category_not_created')
+      end
+      format.html { redirect_to @category }
       format.js
     end
   end
@@ -74,7 +75,9 @@ class CategoriesController < ApplicationController
 
   def permitted_params
     params.require(:category).permit(
-      :title
+      :title,
+      :categorizable_type,
+      :categorizable_id
     )
   end
 end

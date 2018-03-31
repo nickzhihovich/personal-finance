@@ -11,6 +11,8 @@ class Users::DefaultCategoriesCreator < Struct.new(:user)
     end
   end
 
+  delegate :categories, to: :user, prefix: true
+
   def default_categories_list
     %w[Transportation Food House Entertainment Health Other]
   end

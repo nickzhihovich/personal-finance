@@ -17,7 +17,7 @@ namespace :user do
 
   desc 'Convert current categories to User categories polymorphic'
   task convert_categories: :environment do
-    Category.all.each do |category|
+    Category.find_each do |category|
       category.update!(categorizable_type: User, categorizable_id: category.user_id)
     end
   end

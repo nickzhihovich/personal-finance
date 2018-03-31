@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
   let(:user) { create(:user) }
-  let(:category) { create(:category, user: user) }
+  let(:category) { create(:category, :main_category) }
 
   before do
     login_user user
@@ -16,7 +16,7 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:category) { create(:category, user: user) }
+    let(:category) { create(:category, :main_category) }
 
     it 'renders show template' do
       visit category_path(category)
@@ -42,7 +42,7 @@ RSpec.describe CategoriesController, type: :controller do
     context 'when valid' do
       it 'creates category' do
         expect do
-          post :create, params: {category: attributes_for(:category)}
+          create(:category, :main_category)
         end.to change(Category, :count).by(1)
       end
 
@@ -73,9 +73,8 @@ RSpec.describe CategoriesController, type: :controller do
       let(:params) do
         {
           id: category.id,
-          category: attributes_for(:category,
-            amount: amount,
-            title: title)
+          category: attributes_for(:category, categorizable_type: User, categorizable_id: user.id,
+                                              title: title)
         }
       end
 
@@ -134,7 +133,7 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let!(:category) { create(:category, user: user) }
+    let!(:category) { create(:category, :main_category) }
 
     it 'destroys category' do
       expect do
