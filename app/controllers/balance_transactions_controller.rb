@@ -35,11 +35,11 @@ class BalanceTransactionsController < ApplicationController
   private
 
   def create_new_form
-    @form = BalanceTransactionForm.new(BalanceTransaction.new, transactions: Transaction.new)
+    @form = BalanceTransactionForm.new(Transaction.new, balance_transactions: BalanceTransaction.new)
   end
 
   def create_edit_form
-    @form = BalanceTransactionForm.new(balance_transaction, transactions: transaction)
+    @form = BalanceTransactionForm.new(transaction, balance_transactions: balance_transaction)
   end
 
   def create_params
@@ -47,11 +47,11 @@ class BalanceTransactionsController < ApplicationController
   end
 
   def update_params
-    params_to_hash.merge(transaction_id: permitted_params[:transactions_attributes][:id])
+    params_to_hash.merge(transaction_id: params[:id])
   end
 
   def balance_transaction
-    @_balance_transaction ||= transaction.transactinable
+    @balance_transaction ||= transaction.transactinable
   end
 
   def transaction
@@ -60,16 +60,17 @@ class BalanceTransactionsController < ApplicationController
 
   def params_to_hash
     {
-      date: permitted_params[:transactions_attributes][:date],
-      comment: permitted_params[:comment],
-      amount: permitted_params[:transactions_attributes][:amount]
+      date: permitted_params[:date],
+      comment: permitted_params[:balance_transactions_attributes][:comment],
+      amount: permitted_params[:amount]
     }
   end
 
   def permitted_params
-    params.require(:balance_transaction).permit(
-      :comment,
-      transactions_attributes: %i[id amount date]
+    params.require(:transaction).permit(
+      :amount,
+      :date,
+      balance_transactions_attributes: :comment
     )
   end
 end

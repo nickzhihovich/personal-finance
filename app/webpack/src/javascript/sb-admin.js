@@ -51,7 +51,7 @@ $(document).on('turbolinks:load', function() {
         format: 'yyyy-mm-dd',
         orientation: 'bottom'
     });
-    $('#balance_transaction_transactions_attributes_date').datepicker({
+    $('#transaction_date').datepicker({
         format: 'yyyy-mm-dd',
         orientation: 'bottom'
     });

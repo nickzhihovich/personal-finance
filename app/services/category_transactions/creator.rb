@@ -38,7 +38,7 @@ class CategoryTransactions::Creator
   end
 
   def valid?
-    user.free_balance >= @amount
+    true if user.free_balance >= @amount && @amount > 0
   end
 
   def user

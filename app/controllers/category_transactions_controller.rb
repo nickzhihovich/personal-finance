@@ -7,13 +7,13 @@ class CategoryTransactionsController < ApplicationController
 
   def create
     if category_transaction_creator.create
-      flash[:notice] = t('transaction_create')
+      redirect_to categories_path, flash: {notice: t('transaction_create')}
     else
-      flash[:alert] = t('category_transaction_not_create')
+      render :new
     end
 
     respond_to do |format|
-      format.html { redirect_to categories_path }
+      format.html
       format.js
     end
   end

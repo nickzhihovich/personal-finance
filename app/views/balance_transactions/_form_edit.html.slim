@@ -1,4 +1,4 @@
-= simple_form_for @form, url: balance_transactions_path do |f|
+= simple_form_for @form, url: balance_transaction_path do |f|
   = f.input :amount
   = f.input :date, as: :string, order: [:day, :month, :year]
   = f.simple_fields_for :balance_transactions do |t|

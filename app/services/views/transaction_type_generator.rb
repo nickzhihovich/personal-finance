@@ -44,7 +44,7 @@ class Views::TransactionTypeGenerator < Struct.new(:transactinable)
   end
 
   def balance_comment
-    content_tag(:span, "( #{comment} )", class: 'transaction-comment')
+    content_tag(:span, "( #{comment} )", class: 'transaction-comment') unless comment.empty?
   end
 
   def category_link(category)
