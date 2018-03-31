@@ -55,4 +55,8 @@ $(document).on('turbolinks:load', function() {
         format: 'yyyy-mm-dd',
         orientation: 'bottom'
     });
+    $("#q_transactinable_of_CategoryTransaction_type_category_id_in").chosen();
+    $("#q_transactinable_of_BetweenCategoriesTransaction_type_category_from_id_in").chosen();
+    $("#q_transactinable_of_BetweenCategoriesTransaction_type_category_to_id_in").chosen();
+    
 });

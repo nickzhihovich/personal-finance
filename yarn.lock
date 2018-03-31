@@ -1215,6 +1215,10 @@ chokidar@^2.0.0:
   optionalDependencies:
     fsevents "^1.0.0"
 
+chosen-jquery@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/chosen-jquery/-/chosen-jquery-0.1.1.tgz#0293b9d0a55e045c3c8a6f19c414a5e01c25c886"
+
 chownr@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.0.1.tgz#e2a75042a9551908bebd25b8523d5f9769d79181"
