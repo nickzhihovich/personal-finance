@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:transactions).dependent(:destroy) }
   it { is_expected.to have_many(:authorizations).dependent(:destroy) }
   it { is_expected.to have_many(:categories).dependent(:destroy) }
+  it { is_expected.to have_many(:sub_categories).dependent(:destroy).class_name('Category') }
 
   describe 'creation' do
     let(:user) { create(:user) }
@@ -22,8 +23,8 @@ RSpec.describe User, type: :model do
 
   describe '#balance' do
     let(:user) { create(:user) }
-    let!(:transaction1) { create(:transaction, :balance_transactions, user: user) }
-    let!(:transaction2) { create(:transaction, :balance_transactions, user: user) }
+    let!(:transaction1) { create(:balance_transactions, user: user) }
+    let!(:transaction2) { create(:balance_transactions, user: user) }
     let(:expected_balance) { transaction1.amount + transaction2.amount }
 
     it 'calculates sum of transitions' do

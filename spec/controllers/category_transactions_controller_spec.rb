@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CategoryTransactionsController, type: :controller do
   let(:user) { create(:user) }
-  let(:transaction) { create(:transaction, :category_transactions, user: user) }
-  let(:category) { create(:category, :main_category) }
+  let(:category) { create(:main_category) }
 
   before do
     login_user user
@@ -19,10 +18,12 @@ RSpec.describe CategoryTransactionsController, type: :controller do
   describe 'POST #create' do
     context 'when valid' do
       let(:user) { create(:user) }
+      let(:category) { create(:main_category, categorizable: user) }
+      let(:category_transaction) { create(:category_transaction, category: category) }
 
       it 'creates transaction' do
         expect do
-          create(:transaction, :category_transactions, user: user)
+          create(:category_transactions, user: user, transactinable: category_transaction)
         end.to change(CategoryTransaction, :count).by(1)
       end
     end

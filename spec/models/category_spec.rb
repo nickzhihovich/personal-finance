@@ -10,9 +10,9 @@ RSpec.describe Category, type: :model do
       .is_greater_than_or_equal_to(0)
   }
 
-  it { is_expected.to validate_length_of(:title).is_at_most(80) }
+  it { is_expected.to validate_length_of(:title).is_at_most(15) }
 
   it { is_expected.to belong_to(:user) }
   it { is_expected.to belong_to(:categorizable) }
-  it { is_expected.to have_many(:categories) }
+  it { is_expected.to have_many(:sub_categories).dependent(:destroy).class_name('Category') }
 end

@@ -8,8 +8,13 @@ describe BetweenCategoriesTransactions::Creator do
     let(:amount_from) { BigDecimal.new(10_000) }
     let(:init_category_to_amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
 
-    let(:category_from) { create(:category, user: user, amount: amount_from) }
-    let(:category_to) { create(:category, user: user, amount: init_category_to_amount) }
+    let(:category_from) do
+      create(:main_category, user: user, amount: amount_from, categorizable: user)
+    end
+
+    let(:category_to) do
+      create(:main_category, user: user, amount: init_category_to_amount, categorizable: user)
+    end
 
     let(:params) do
       {amount: amount, user_id: user.id, category_from_id: category_from.id,
@@ -51,8 +56,12 @@ describe BetweenCategoriesTransactions::Creator do
     let(:amount) { BigDecimal.new(Faker::Number.decimal(4, 2)) }
     let(:category_amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
 
-    let(:category_from) { create(:category, user: user, amount: category_amount) }
-    let(:category_to) { create(:category, user: user, amount: category_amount) }
+    let(:category_from) do
+      create(:main_category, user: user, amount: category_amount, categorizable: user)
+    end
+    let(:category_to) do
+      create(:main_category, user: user, amount: category_amount, categorizable: user)
+    end
 
     let(:init_category_from_amount) { category_from.amount }
     let(:init_category_to_amount) { category_to.amount }

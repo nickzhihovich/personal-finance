@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
   let(:user) { create(:user) }
-  let(:category) { create(:category, :main_category) }
+  let(:category) { create(:main_category, categorizable: user) }
 
   before do
     login_user user
@@ -16,7 +16,7 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:category) { create(:category, :main_category) }
+    let(:category) { create(:main_category, categorizable: user) }
 
     it 'renders show template' do
       visit category_path(category)
@@ -40,15 +40,28 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'Post #create' do
     context 'when valid' do
+      subject(:create_category) { post :create, params: params }
+
+      let(:title) { Faker::Internet.user_name(5..15) }
+      let(:params) do
+        {
+          category: {
+            title: title,
+            user_id: user.id,
+            categorizable_type: 'User',
+            categorizable_id: user.id
+          }
+        }
+      end
+
       it 'creates category' do
         expect do
-          create(:category, :main_category)
+          create_category
         end.to change(Category, :count).by(1)
       end
 
       it 'redirects after create' do
-        post :create, params: {category: attributes_for(:category)}
-        expect(response).to redirect_to categories_path
+        expect(create_category).to redirect_to(assigns(:category))
       end
     end
 
@@ -68,23 +81,18 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'PUT #update' do
     context 'when valid' do
-      let(:amount) { Faker::Number.decimal(3, 2) }
+      let(:amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
       let(:title) { Faker::Internet.user_name(5..15) }
       let(:params) do
         {
           id: category.id,
-          category: attributes_for(:category, categorizable_type: User, categorizable_id: user.id,
-                                              title: title)
+          category: attributes_for(:category, user_id: user.id, title: title)
         }
       end
 
       before do
         put :update, params: params
         category.reload
-      end
-
-      it 'updates category amount' do
-        expect(category.amount.to_f).to eq(amount.to_f)
       end
 
       it 'updates category title' do
@@ -127,13 +135,13 @@ RSpec.describe CategoriesController, type: :controller do
           id: category.id,
           category: attributes_for(:category, amount: nil, title: nil)
         }
-        expect(response).to redirect_to categories_path
+        expect(response).to render_template :edit
       end
     end
   end
 
   describe 'DELETE #destroy' do
-    let!(:category) { create(:category, :main_category) }
+    let!(:category) { create(:main_category, categorizable: user) }
 
     it 'destroys category' do
       expect do

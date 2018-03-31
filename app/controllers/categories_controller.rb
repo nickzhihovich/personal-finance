@@ -2,28 +2,29 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_category, only: %i[show update destroy edit]
   before_action :set_parent, only: %i[new create]
+  before_action :category_creator, only: :create
 
   def index
     @categories = current_user.categories.main_category
   end
 
   def show
-    @subcategories = @category.categories
+    @subcategories = @category.sub_categories
   end
 
   def new
-    @category = @parent.categories.new
+    @category = @parent.sub_categories.new
   end
 
   def create
-    @category = Categories::Creator.new(category_params).call
+    if @category.present?
+      redirect_to @category, flash: {notice: t('category_created')}
+    else
+      render :new
+    end
+
     respond_to do |format|
-      if @category.save
-        flash[:notice] = t('category_created')
-      else
-        flash[:alert] = t('category_not_created')
-      end
-      format.html { redirect_to @category }
+      format.html
       format.js
     end
   end
@@ -57,7 +58,7 @@ class CategoriesController < ApplicationController
   private
 
   def category_creator
-    Categories::Creator.new(parent: @parent, params: permitted_params)
+    @category = Categories::Creator.new(parent: @parent, params: create_params).create
   end
 
   def set_parent
@@ -73,11 +74,11 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
+  def create_params
+    permitted_params.merge(user_id: current_user.id)
+  end
+
   def permitted_params
-    params.require(:category).permit(
-      :title,
-      :categorizable_type,
-      :categorizable_id
-    )
+    params.require(:category).permit(:title)
   end
 end

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :category_transaction do
-    association(:category, :main_category)
+    association(:category)
   end
 end
