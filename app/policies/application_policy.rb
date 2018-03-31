@@ -50,4 +50,10 @@ class ApplicationPolicy
       scope
     end
   end
+
+  protected
+
+  def present_and_belongs_to_user?
+    return true if user.present? && user == record.user
+  end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
   let(:user) { create(:user) }
-  let(:category) { create(:main_category, categorizable: user) }
+  let(:category) { create(:main_category, categorizable: user, user: user) }
 
   before do
     login_user user
@@ -16,8 +16,6 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:category) { create(:main_category, categorizable: user) }
-
     it 'renders show template' do
       visit category_path(category)
       expect(response.status).to eq(200)
@@ -138,15 +136,53 @@ RSpec.describe CategoriesController, type: :controller do
         expect(response).to render_template :edit
       end
     end
+
+    context 'when another user' do
+      let(:another_user) { create(:user) }
+      let(:amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
+      let(:init_title) { category.title }
+      let(:title) { Faker::Internet.user_name(5..15) }
+      let(:params) do
+        {
+          id: category.id,
+          category: attributes_for(:category, user_id: another_user.id, title: title)
+        }
+      end
+
+      before do
+        put :update, params: params
+        category.reload
+      end
+
+      it 'updates category title' do
+        expect(category.title).to eq(init_title)
+      end
+
+      it 'redirects after update' do
+        put :update, params: {id: category.id, category: attributes_for(:category)}
+        expect(response).to  redirect_to categories_path
+      end
+    end
   end
 
   describe 'DELETE #destroy' do
-    let!(:category) { create(:main_category, categorizable: user) }
+    let!(:category) { create(:main_category, categorizable: user, user: user) }
 
     it 'destroys category' do
       expect do
         delete :destroy, params: {id: category.id}
       end.to change(Category, :count).by(-1)
+    end
+  end
+
+  describe '#destroy when a non authorized user' do
+    let(:another_user) { create(:user) }
+    let!(:category) { create(:main_category, categorizable: another_user, user: another_user) }
+
+    it 'can not be deleted by a non authorized user' do
+      expect do
+        delete :destroy, params: {id: category.id}
+      end.to change(Category, :count).by(0)
     end
   end
 end

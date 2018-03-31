@@ -72,6 +72,7 @@ class CategoriesController < ApplicationController
 
   def find_category
     @category = Category.find(params[:id])
+    authorize @category
   end
 
   def create_params
