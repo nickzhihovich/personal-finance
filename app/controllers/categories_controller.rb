@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_category, only: %i[show update destroy edit]
+  before_action :set_parent, only: %i[new create]
 
   def index
     @categories = current_user.categories.reverse
@@ -10,18 +11,18 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = current_user.categories.new
+    @category = @parent.categories.new
   end
 
   def create
-    @category = current_user.categories.new(category_params)
+    if category_creator.create
+      redirect_to categories_path, flash: {notice: t('category_created')}
+    else
+      render :new
+    end
+
     respond_to do |format|
-      if @category.save
-        flash[:notice] = t('category_created')
-      else
-        flash[:alert] = t('category_not_created')
-      end
-      format.html { redirect_to categories_path }
+      format.html
       format.js
     end
   end
@@ -30,13 +31,14 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    if @category.update(permitted_params)
+      redirect_to categories_path, flash: {notice: t('category_updated')}
+    else
+      render :edit
+    end
+
     respond_to do |format|
-      if @category.update(category_params)
-        flash[:notice] = t('category_updated')
-      else
-        flash[:alert] = t('category_not_updated')
-      end
-      format.html { redirect_to categories_path }
+      format.html
       format.js
     end
   end
@@ -53,14 +55,26 @@ class CategoriesController < ApplicationController
 
   private
 
+  def category_creator
+    Categories::Creator.new(parent: @parent, params: permitted_params)
+  end
+
+  def set_parent
+    @parent ||= category || current_user
+  end
+
+  def category
+    category_id = params[:category_id]
+    current_user.categories.find_by(id: category_id) if category_id.present?
+  end
+
   def find_category
     @category = Category.find(params[:id])
   end
 
-  def category_params
+  def permitted_params
     params.require(:category).permit(
-      :title,
-      :amount
+      :title
     )
   end
 end

@@ -8,3 +8,4 @@ h4
 = link_to add_money_category_path(@category), class: 'btn btn-primary' do
   i.fa.fa-money.fa-lg
   = t('add_money')
+= link_to t('add_category'), new_category_path(category_id: @category.id),  {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-primary'}

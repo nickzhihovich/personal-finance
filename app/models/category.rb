@@ -1,5 +1,4 @@
 class Category < ApplicationRecord
-  belongs_to :user
   has_many :category_transactions, dependent: :destroy
   has_many :categories_from, class_name: 'BetweenCategoriesTransaction', foreign_key: 'category_from'
   has_many :categories_to, class_name: 'BetweenCategoriesTransaction', foreign_key: 'category_to'
