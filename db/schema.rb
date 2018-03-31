@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(version: 20180323134330) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "categorizable_type"
+    t.bigint "categorizable_id"
+    t.index ["categorizable_type", "categorizable_id"], name: "index_categories_on_categorizable_type_and_categorizable_id"
   end
 
   create_table "category_transactions", force: :cascade do |t|
