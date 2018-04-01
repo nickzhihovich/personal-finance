@@ -1,4 +1,4 @@
-= simple_form_for @category do |f|
+= simple_form_for @category, remote: true do |f|
   = f.input :title
   = hidden_field_tag(:category_id, params[:category_id])
   = f.button :submit, class: 'btn btn-outline-success'

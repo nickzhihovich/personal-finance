@@ -54,6 +54,7 @@ en:
   add_between_categories_transaction: 'Add between categories transaction'
   select_category: 'Select category'
   add_category: 'Add category'
+  edit_category: 'Edit category'
   add_sub_category: 'Add sub category'
   subcategories: 'Subcategories'
   can_not_be_removed: 'Unfortunately, it cannot be removed'
