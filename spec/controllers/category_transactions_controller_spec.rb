@@ -29,7 +29,7 @@ RSpec.describe CategoryTransactionsController, type: :controller do
       let(:params) do
         {
           id: category.id,
-          category_transaction: {
+          transaction: {
             amount: amount
           }
         }

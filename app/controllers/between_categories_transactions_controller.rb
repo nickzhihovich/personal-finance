@@ -1,7 +1,7 @@
 class BetweenCategoriesTransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :create_new_form, only: %i[new create]
-  before_action :set_categories, only: %i[new create] 
+  before_action :set_categories, only: %i[new create]
 
   def new
   end

@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   before_action :category_creator, only: :create
 
   def index
-    @categories = current_user.categories.main_category.order('id')
+    @categories = current_user.categories.main_category.order(id: :desc)
   end
 
   def show

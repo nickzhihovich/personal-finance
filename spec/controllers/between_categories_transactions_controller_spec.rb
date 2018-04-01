@@ -25,12 +25,13 @@ RSpec.describe BetweenCategoriesTransactionsController, type: :controller do
 
       let(:params) do
         {
-          between_categories_transaction:
-            {
-              amount: amount,
+          transaction: {
+            amount: amount,
+            between_categories_transactions_attributes: {
               category_from_id: category_from.id,
               category_to_id: category_to.id
             }
+          }
         }
       end
 
@@ -42,7 +43,7 @@ RSpec.describe BetweenCategoriesTransactionsController, type: :controller do
 
       it 'redirects after create' do
         post :create, params: params
-        expect(response).to redirect_to activity_page_path
+        expect(response).to redirect_to categories_path
       end
     end
 
@@ -56,12 +57,13 @@ RSpec.describe BetweenCategoriesTransactionsController, type: :controller do
 
       let(:params) do
         {
-          between_categories_transaction:
-            {
-              amount: amount,
+          transaction: {
+            amount: amount,
+            between_categories_transactions_attributes: {
               category_from_id: category_from.id,
               category_to_id: category_to.id
             }
+          }
         }
       end
 
