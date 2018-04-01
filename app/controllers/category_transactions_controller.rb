@@ -1,12 +1,14 @@
 class CategoryTransactionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_category, only: :new
+  before_action :find_category, only: %i[new create]
+  before_action :create_new_form, only: %i[new create]
 
   def new
   end
 
   def create
-    if category_transaction_creator.create
+    if @form.validate(permitted_params)
+      category_transaction_creator.create
       redirect_to categories_path, flash: {notice: t('transaction_create')}
     else
       render :new
@@ -19,6 +21,10 @@ class CategoryTransactionsController < ApplicationController
   end
 
   private
+
+  def create_new_form
+    @form = CategoryTransactionForm.new(current_user.transactions.new)
+  end
 
   def category_transaction_creator
     CategoryTransactions::Creator.new(create_params)
@@ -33,7 +39,7 @@ class CategoryTransactionsController < ApplicationController
   end
 
   def permitted_params
-    params.require(:category_transaction).permit(
+    params.require(:transaction).permit(
       :amount
     )
   end
