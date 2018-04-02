@@ -35,7 +35,10 @@ class BalanceTransactionsController < ApplicationController
   private
 
   def create_new_form
-    @form = BalanceTransactionForm.new(Transaction.new, balance_transactions: BalanceTransaction.new)
+    @form = BalanceTransactionForm.new(
+      current_user.transactions.new,
+      balance_transactions: BalanceTransaction.new
+    )
   end
 
   def create_edit_form
