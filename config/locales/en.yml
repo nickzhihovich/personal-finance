@@ -57,6 +57,7 @@ en:
   add_category: 'Add category'
   add_sub_category: 'Add sub category'
   subcategories: 'Subcategories'
+  can_not_be_removed: 'Unfortunately, it cannot be removed'
   transaction:
     types:
       to_balance: 'To balance'

@@ -11,9 +11,12 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
-    @transaction.destroy
+    if Transactions::Destroyer.new(@transaction).call
+      flash[:notice] = t('delete_transaction_seccess')
+    else
+      flash[:alert] = t('can_not_be_removed')
+    end
 
-    flash[:notice] = t('delete_transaction_seccess')
     respond_to do |format|
       format.html { redirect_to activity_page_path }
       format.js
