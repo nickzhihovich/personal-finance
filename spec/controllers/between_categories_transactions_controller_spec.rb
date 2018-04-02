@@ -19,9 +19,9 @@ RSpec.describe BetweenCategoriesTransactionsController, type: :controller do
       let(:amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
       let(:amount_from) { BigDecimal.new(10_000) }
       let(:category_from) do
-        create(:main_category, user: user, amount: amount_from, categorizable: user)
+        create(:main_category, user: user, amount: amount_from)
       end
-      let(:category_to) { create(:main_category, user: user, categorizable: user) }
+      let(:category_to) { create(:main_category, user: user) }
 
       let(:params) do
         {
