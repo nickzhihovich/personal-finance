@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CategoryDecorator do
-  let(:category) { create(:category).decorate }
+  let(:category) { create(:main_category).decorate }
   let(:expected) { "#{category.title} | #{category.amount}" }
 
   it 'equal .title | .amount' do

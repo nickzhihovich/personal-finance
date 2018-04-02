@@ -1,27 +1,30 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_category, only: %i[show update destroy edit]
+  before_action :set_parent, only: %i[new create]
+  before_action :category_creator, only: :create
 
   def index
-    @categories = current_user.categories.reverse
+    @categories = current_user.categories.main_category
   end
 
   def show
+    @subcategories = @category.sub_categories
   end
 
   def new
-    @category = current_user.categories.new
+    @category = @parent.sub_categories.new
   end
 
   def create
-    @category = current_user.categories.new(category_params)
+    if @category.present?
+      redirect_to @category, flash: {notice: t('category_created')}
+    else
+      render :new
+    end
+
     respond_to do |format|
-      if @category.save
-        flash[:notice] = t('category_created')
-      else
-        flash[:alert] = t('category_not_created')
-      end
-      format.html { redirect_to categories_path }
+      format.html
       format.js
     end
   end
@@ -30,13 +33,14 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    if @category.update(permitted_params)
+      redirect_to categories_path, flash: {notice: t('category_updated')}
+    else
+      render :edit
+    end
+
     respond_to do |format|
-      if @category.update(category_params)
-        flash[:notice] = t('category_updated')
-      else
-        flash[:alert] = t('category_not_updated')
-      end
-      format.html { redirect_to categories_path }
+      format.html
       format.js
     end
   end
@@ -53,14 +57,28 @@ class CategoriesController < ApplicationController
 
   private
 
+  def category_creator
+    @category = Categories::Creator.new(parent: @parent, params: create_params).create
+  end
+
+  def set_parent
+    @parent ||= category || current_user
+  end
+
+  def category
+    category_id = params[:category_id]
+    current_user.categories.find_by(id: category_id) if category_id.present?
+  end
+
   def find_category
     @category = Category.find(params[:id])
   end
 
-  def category_params
-    params.require(:category).permit(
-      :title,
-      :amount
-    )
+  def create_params
+    permitted_params.merge(user_id: current_user.id)
+  end
+
+  def permitted_params
+    params.require(:category).permit(:title)
   end
 end

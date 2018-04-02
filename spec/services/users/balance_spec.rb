@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Users::Balances', type: :feature do
   let(:user) { create(:user) }
   let(:balance) { Users::Balance.new(user).balance }
-  let!(:user_transactions) { create_list(:transaction, 10, :balance_transactions, user: user) }
+  let!(:user_transactions) { create_list(:balance_transactions, 10, user: user) }
   let(:expected_balance) { user_transactions.sum(&:amount) }
 
   it 'calculates sum of transitions' do

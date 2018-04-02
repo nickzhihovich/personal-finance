@@ -18,8 +18,10 @@ RSpec.describe BetweenCategoriesTransactionsController, type: :controller do
     context 'when valid' do
       let(:amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
       let(:amount_from) { BigDecimal.new(10_000) }
-      let(:category_from) { create(:category, user: user, amount: amount_from) }
-      let(:category_to) { create(:category, user: user) }
+      let(:category_from) do
+        create(:main_category, user: user, amount: amount_from)
+      end
+      let(:category_to) { create(:main_category, user: user) }
 
       let(:params) do
         {
@@ -47,8 +49,10 @@ RSpec.describe BetweenCategoriesTransactionsController, type: :controller do
     context 'when not valid' do
       let(:amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
       let(:amount_from) { BigDecimal.new(10) }
-      let(:category_from) { create(:category, user: user, amount: amount_from) }
-      let(:category_to) { create(:category, user: user) }
+      let(:category_from) do
+        create(:main_category, user: user, categorizable: user, amount: amount_from)
+      end
+      let(:category_to) { create(:main_category, user: user, categorizable: user) }
 
       let(:params) do
         {

@@ -54,6 +54,9 @@ en:
   move_money: 'Move money'
   add_between_categories_transaction: 'Add between categories transaction'
   select_category: 'Select category'
+  add_category: 'Add category'
+  add_sub_category: 'Add sub category'
+  subcategories: 'Subcategories'
   transaction:
     types:
       to_balance: 'To balance'

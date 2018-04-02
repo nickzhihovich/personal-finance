@@ -7,7 +7,7 @@ describe CategoryTransactions::Creator do
     let(:date) { Faker::Date.between(1.year.ago, Date.current) }
     let(:balance_params) { {date: date, amount: balance, user_id: user.id, comment: nil} }
 
-    let(:category) { create(:category, user: user) }
+    let(:category) { create(:main_category) }
     let(:amount) { Faker::Number.decimal(3, 2).to_f }
     let(:params) { {amount: amount, user_id: user.id, category_id: category.id} }
 
@@ -31,7 +31,7 @@ describe CategoryTransactions::Creator do
   context 'when invalid: freebalance < amount' do
     let(:user) { create(:user) }
     let(:amount) { Faker::Number.decimal(3, 2).to_f }
-    let(:category) { create(:category, user: user) }
+    let(:category) { create(:main_category) }
     let(:params) { {amount: amount, user_id: user.id, category_id: category.id} }
 
     it 'creates Transaction' do

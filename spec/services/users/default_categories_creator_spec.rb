@@ -5,7 +5,7 @@ RSpec.describe 'Users::DefaultCategoriesCreator', type: :feature do
 
   it 'create six default categories' do
     expect do
-      Users::DefaultCategoriesCreator.new(user).call
+      Users::DefaultCategoriesCreator.new(user).create_default_categories
     end.to change(user.categories, :count).by(6)
   end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BalanceTransactionsController, type: :controller do
   let(:user) { create(:user) }
-  let(:transaction) { create(:transaction, :balance_transactions, user: user) }
+  let(:transaction) { create(:balance_transactions, user: user) }
 
   before do
     login_user user
@@ -35,7 +35,7 @@ RSpec.describe BalanceTransactionsController, type: :controller do
 
       it 'creates transaction' do
         expect do
-          create(:transaction, :balance_transactions, user: user)
+          create(:balance_transactions, user: user)
         end.to change(Transaction, :count).by(1)
       end
 
@@ -69,7 +69,7 @@ RSpec.describe BalanceTransactionsController, type: :controller do
   describe 'PUT #update' do
     context 'when valid' do
       let(:amount) { Faker::Number.between(100, 1000) }
-      let(:balance_transaction) { create(:transaction, :balance_transactions) }
+      let(:balance_transaction) { create(:balance_transactions) }
 
       let(:params) do
         {

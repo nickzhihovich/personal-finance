@@ -20,6 +20,6 @@ class Users::Creator < Struct.new(:email)
   end
 
   def add_default_categories
-    Users::DefaultCategoriesCreator.new(@user).call
+    Users::DefaultCategoriesCreator.new(@user).create_default_categories
   end
 end
