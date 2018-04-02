@@ -1,0 +1,6 @@
+= simple_form_for :between_categories_transaction, url: between_categories_transactions_path, method: :post do |f|
+  = f.input :category_from_id, collection: @categories, label_method: :to_label, prompt: t('select_category')
+  = f.input :category_to_id, collection: @categories, label_method: :to_label, prompt: t('select_category')
+  = f.input :amount
+
+  = f.button :submit, t('move_money'), class: 'btn btn-outline-success'

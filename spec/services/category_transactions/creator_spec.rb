@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'CategoryTransactions::Creator', type: :feature do
+describe CategoryTransactions::Creator do
   context 'when valid' do
     let(:user) { create(:user) }
     let(:balance) { Faker::Number.decimal(4, 2).to_f }
@@ -17,13 +17,13 @@ RSpec.describe 'CategoryTransactions::Creator', type: :feature do
 
     it 'creates CategoryTransaction' do
       expect do
-        CategoryTransactions::Creator.new(params).create
+        described_class.new(params).create
       end.to change(CategoryTransaction, :count).by(1)
     end
 
     it 'creates Transaction' do
       expect do
-        CategoryTransactions::Creator.new(params).create
+        described_class.new(params).create
       end.to change(Transaction, :count).by(1)
     end
   end
@@ -36,7 +36,7 @@ RSpec.describe 'CategoryTransactions::Creator', type: :feature do
 
     it 'creates Transaction' do
       expect do
-        CategoryTransactions::Creator.new(params).create
+        described_class.new(params).create
       end.to change(Transaction, :count).by(0)
     end
   end

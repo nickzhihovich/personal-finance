@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'BalanceTransactions::Updater', type: :feature do
+describe BalanceTransactions::Updater do
   context 'when valid' do
     let(:amount) { Faker::Number.between(100, 1000) }
     let(:date) { Faker::Date.between(1.year.ago, Date.current) }
@@ -10,7 +10,7 @@ RSpec.describe 'BalanceTransactions::Updater', type: :feature do
     let(:params) { {date: date, comment: comment, amount: amount, transaction_id: transaction.id} }
 
     before do
-      BalanceTransactions::Updater.new(params).update
+      described_class.new(params).update
       transaction.reload
     end
 
@@ -37,7 +37,7 @@ RSpec.describe 'BalanceTransactions::Updater', type: :feature do
     let(:params) { {date: date, comment: comment, amount: nil, transaction_id: transaction.id} }
 
     before do
-      BalanceTransactions::Updater.new(params).update
+      described_class.new(params).update
       transaction.reload
     end
 
