@@ -67,6 +67,7 @@ en:
   for_transactions_between_categories: 'For transactions between categories'
   choose_a_categories: 'Choose a categories'
   transactions_not_found: 'Transactions not found.'
+  you_should_authorized: 'You are not authorized to perform this action.'
   transaction:
     types:
       to_balance: 'To balance'
