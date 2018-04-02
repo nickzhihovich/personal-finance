@@ -28,8 +28,8 @@ RSpec.describe BalanceTransactionsController, type: :controller do
 
       let(:attributes) do
         {
-          balance_transaction: attributes_for(:balance_transaction,
-            transactions_attributes: attributes_for(:transaction))
+          transaction: attributes_for(:transaction,
+            balance_transactions_attributes: attributes_for(:balance_transaction))
         }
       end
 
@@ -48,14 +48,14 @@ RSpec.describe BalanceTransactionsController, type: :controller do
     context 'when not valid' do
       let(:attributes) do
         {
-          balance_transaction: attributes_for(:balance_transaction,
-            transactions_attributes: attributes_for(:transaction, amount: nil))
+          transaction: attributes_for(:transaction,
+            balance_transactions_attributes: attributes_for(:balance_transaction), amount: nil)
         }
       end
 
       it 'not creates new transaction' do
         expect do
-          post :create, params: {balance_transaction: attributes}
+          post :create, params: {transaction: attributes}
         end.not_to change(Transaction, :count)
       end
 
@@ -74,9 +74,9 @@ RSpec.describe BalanceTransactionsController, type: :controller do
       let(:params) do
         {
           id: balance_transaction.id,
-          balance_transaction: attributes_for(:balance_transaction,
-            transactions_attributes: attributes_for(:transaction, amount: amount,
-                                                                  id: balance_transaction.id))
+          transaction: attributes_for(:transaction,
+            balance_transactions_attributes: attributes_for(:balance_transaction),
+            amount: amount, id: balance_transaction.id)
         }
       end
 
@@ -102,9 +102,9 @@ RSpec.describe BalanceTransactionsController, type: :controller do
       let(:params) do
         {
           id: transaction.id,
-          balance_transaction: attributes_for(:balance_transaction,
-            transactions_attributes: attributes_for(:transaction,
-              amount: nil, data: nil, id: transaction.id))
+          transaction: attributes_for(:transaction,
+            balance_transactions_attributes: attributes_for(:balance_transaction),
+            amount: nil, data: nil, id: transaction.id)
         }
       end
 

@@ -1,13 +1,19 @@
 - if user_signed_in?
-  h2
+  button.btn.btn-outline-info aria-controls="add-money-form" aria-expanded="false" data-target="#add-money-form" data-toggle="collapse" type="button" 
     = t('add_money')
-  =render 'balance_transactions/form'
+  #add-money-form.collapse
+    h2
+      = t('add_money')
+    =render 'balance_transactions/form'
 
   .last-transactions
     h2
       = t('last_ten_transactions')
-
-    = render 'transactions/table'
+    - unless @transactions.empty? 
+      = render 'transactions/table'
+    - else
+      h2
+        = t('transactions_not_found')
 
   .home-categories
     h2

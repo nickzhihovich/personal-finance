@@ -41,7 +41,7 @@ class BetweenCategoriesTransactions::Creator
   end
 
   def valid?
-    category_from.amount >= @amount
+    category_from.amount >= @amount && @amount > 0
   end
 
   def category_from

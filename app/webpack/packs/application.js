@@ -4,6 +4,7 @@ global.jQuery = $;
 
 import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap-datepicker/dist/js/bootstrap-datepicker';
+import 'chosen-jquery/lib/chosen.jquery';
 import '../src/javascript/sb-admin';
 
 import Rails from 'rails-ujs';

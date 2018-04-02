@@ -58,6 +58,15 @@ en:
   add_sub_category: 'Add sub category'
   subcategories: 'Subcategories'
   can_not_be_removed: 'Unfortunately, it cannot be removed'
+  select_category_transactions: 'From balance to:'
+  from: 'From'
+  to: 'To'
+  select_date_range: 'Select date range'
+  filter_by_category: 'Filter by category'
+  for_transaction_to_category: 'For transaction to category'
+  for_transactions_between_categories: 'For transactions between categories'
+  choose_a_categories: 'Choose a categories'
+  transactions_not_found: 'Transactions not found.'
   transaction:
     types:
       to_balance: 'To balance'

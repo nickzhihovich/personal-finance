@@ -4,6 +4,7 @@ class TransactionsController < ApplicationController
   before_action :search_for_transactions, only: %i[index search]
 
   def index
+    @categories = current_user.categories
   end
 
   def search

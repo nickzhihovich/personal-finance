@@ -1,8 +1,16 @@
-h2= t('all_transactions')
+h2
+  = t('all_transactions')
+
 = link_to t('add_transaction'), new_balance_transaction_path, {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-primary'}
 = link_to t('add_between_categories_transaction'), new_between_categories_transaction_path, {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-primary'}
 
-= render 'transactions/table'
+= render 'transactions/filter'
 
-nav aria-label="blah"
-  = will_paginate @transactions
+- unless @transactions.empty? 
+  = render 'transactions/table'
+
+  nav aria-label="blah"
+    = will_paginate @transactions
+- else
+  h2
+    = t('transactions_not_found')
