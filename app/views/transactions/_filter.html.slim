@@ -1,7 +1,27 @@
 = search_form_for @search, url: search_transactions_path, method: :post do |f|
-  = f.label :date
-  = f.text_field :date_gteq
-  span class='input-group-addon'
-    | to
-  = f.text_field :date_lteq
-  = f.submit
+  h4
+    =t('select_date_range')
+  .row  
+    .col
+      = f.input :date_gteq
+    .col
+      = f.input :date_lteq
+  .row
+    .col-md-12
+      h4
+        = t('filter_by_category')
+    .col-md-4
+      .category-filter-for-category-transaction
+        h5
+          = t('for_transaction_to_category')
+        = f.input :transactinable_of_CategoryTransaction_type_category_id_in, collection: current_user.categories || [], label_method: :title, value_method: :id,label: t('select_category_transactions'), include_blank: false 
+    .col-md-8
+      h5 
+        = t('for_transactions_between_categories')
+      .row.category-filter-for-category-transaction
+        .col
+          = f.input :transactinable_of_BetweenCategoriesTransaction_type_category_from_id_in, collection: current_user.categories || [], label_method: :title, value_method: :id,label: t('from'), include_blank: false 
+        .col
+          = f.input :transactinable_of_BetweenCategoriesTransaction_type_category_to_id_in, collection: current_user.categories || [], label_method: :title, value_method: :id,label: t('to'), include_blank: false 
+
+  = f.button :submit, class: "btn btn-info"
