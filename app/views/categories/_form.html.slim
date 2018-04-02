@@ -1,4 +1,4 @@
 = simple_form_for @category do |f|
   = f.input :title
   = hidden_field_tag(:category_id, params[:category_id])
-  = f.button :submit, t('add_category'), class: 'btn btn-outline-success'
+  = f.button :submit, class: 'btn btn-outline-success'

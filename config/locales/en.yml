@@ -17,7 +17,6 @@ en:
   сhange_password: 'Change password'
   send_me_reset_password_instructions: 'Send me reset password instructions'
   forgot_password: 'Forgot your password?'
-  all_transactions: 'All transactions'
   available_ money: 'Available money'
   balance: 'Balance'
   reset_password: 'Reset Password'
@@ -59,16 +58,22 @@ en:
   subcategories: 'Subcategories'
   can_not_be_removed: 'Unfortunately, it cannot be removed'
   select_category_transactions: 'From balance to:'
-  from: 'From'
-  to: 'To'
-  select_date_range: 'Select date range'
-  filter_by_category: 'Filter by category'
-  for_transaction_to_category: 'For transaction to category'
-  for_transactions_between_categories: 'For transactions between categories'
   choose_a_categories: 'Choose a categories'
-  transactions_not_found: 'Transactions not found.'
   you_should_authorized: 'You are not authorized to perform this action.'
   transaction:
     types:
       to_balance: 'To balance'
       from_balance_to: 'Balance'
+  transactions:
+    index:
+      all_transactions: 'All transactions'
+      transactions_not_found: 'Transactions not found.'
+    filter:
+      from: 'From'
+      to: 'To'
+      select_date_range: 'Select date range'
+      filter_by_category: 'Filter by category'
+      for_transaction_to_category: 'For transaction to category'
+      for_transactions_between_categories: 'For transactions between categories'
+      from_date: 'From date'
+      to_date: 'To date'       

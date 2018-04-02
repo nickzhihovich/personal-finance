@@ -3,9 +3,9 @@
     =t('select_date_range')
   .row  
     .col
-      = f.input :date_gteq
+      = f.input :date_gteq, label: t('from_date')
     .col
-      = f.input :date_lteq
+      = f.input :date_lteq, label: t('to_date')
   .row
     .col-md-12
       h4
