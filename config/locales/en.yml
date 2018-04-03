@@ -79,3 +79,6 @@ en:
       for_transactions_between_categories: 'For transactions between categories'
       from_date: 'From date'
       to_date: 'To date'
+  pages:
+    home:
+      categories_budget: 'Categories budget'

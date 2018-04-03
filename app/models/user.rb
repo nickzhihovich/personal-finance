@@ -21,4 +21,5 @@ class User < ApplicationRecord
 
   delegate :balance_transactions, to: :transactions
   delegate :category_transactions, to: :transactions
+  delegate :categories_have_budget, to: :categories
 end

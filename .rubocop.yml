@@ -10,6 +10,7 @@ AllCops:
     - 'log/**/*'
     - 'config/initializers/devise.rb'
     - 'bin/**/*'
+    - 'app/services/charts/colors_array.rb'
 
 Bundler/DuplicatedGem:
   Enabled: true
