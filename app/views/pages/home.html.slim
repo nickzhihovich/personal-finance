@@ -27,8 +27,12 @@
       .chart
         h2 
           = t('categories_budget')
-        
         = render 'pages/home/charts'
+  
+  .row
+    = render 'pages/home/filter'
+  .row
+    #date-charts
 - else
   h2
     = t('home_page')

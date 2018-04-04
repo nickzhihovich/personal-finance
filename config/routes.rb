@@ -16,4 +16,6 @@ Rails.application.routes.draw do
     get 'add_money', on: :member, to: 'category_transactions#new'
     post 'update_balance', on: :member, to: 'category_transactions#create'
   end
+
+  get '/date_chart', to: 'pages#date_chart'
 end
