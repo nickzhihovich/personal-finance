@@ -1,17 +1,13 @@
 class Charts::Home::CategoriesWithChangesDate < Struct.new(:categories_with_changes)
   def date
-    chart_date
-  end
-
-  private
-
-  def chart_date
     {
       categories_titles: categories_titles,
       categories_amounts: categories_amounts,
       charts_colors: charts_colors
     }
   end
+
+  private
 
   def categories_titles
     categories_with_changes.pluck(:category).pluck(:title)
@@ -22,6 +18,6 @@ class Charts::Home::CategoriesWithChangesDate < Struct.new(:categories_with_chan
   end
 
   def charts_colors
-    Charts::ColorsArray.new(categories_with_changes.count).colors
+    Charts::ColorsArray.new(categories_with_changes.count).collors_array
   end
 end

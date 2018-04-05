@@ -19,7 +19,7 @@ class Charts::Home::CategoriesWithChanges < Struct.new(:category_transactions)
     category_transactions.each do |transaction|
       @categories << transaction.transactinable.category
     end
-    @categories
+    @categories = @categories.uniq
   end
 
   def incame_to_category(category)
