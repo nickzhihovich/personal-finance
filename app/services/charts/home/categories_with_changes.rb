@@ -6,20 +6,15 @@ class Charts::Home::CategoriesWithChanges < Struct.new(:category_transactions)
   private
 
   def categories_with_changes
-    @categories_with_changes = []
-    categories_that_was_changed.each do |category|
-      item = {category: category, changes: incame_to_category(category)}
-      @categories_with_changes << item
+    categories_that_was_changed.reduce([]) do |categories, item|
+      categories << {category: item, changes: incame_to_category(item)}
     end
-    @categories_with_changes
   end
 
   def categories_that_was_changed
-    @categories = []
-    category_transactions.each do |transaction|
-      @categories << transaction.transactinable.category
-    end
-    @categories = @categories.uniq
+    category_transactions.reduce([]) do |categories, transaction|
+      categories << transaction.transactinable.category
+    end.uniq
   end
 
   def incame_to_category(category)
