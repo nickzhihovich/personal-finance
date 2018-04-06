@@ -1,11 +1,5 @@
 class Charts::Home::CategoriesDate < Struct.new(:categories)
-  def date
-    chart_date
-  end
-
-  private
-
-  def chart_date
+  def data
     {
       categories_titles: categories_titles,
       categories_amounts: categories_amounts,
@@ -13,15 +7,17 @@ class Charts::Home::CategoriesDate < Struct.new(:categories)
     }
   end
 
+  private
+
   def categories_titles
-    categories.pluck(:title)
+    categories.map(&:title)
   end
 
   def categories_amounts
-    categories.pluck(:amount).map(&:to_f)
+    categories.map(&:amount)
   end
 
   def charts_colors
-    Charts::ColorsArray.new(categories.count).colors
+    Charts::ColorsArray.new(categories.count).collors_array
   end
 end
