@@ -15,5 +15,18 @@ FactoryBot.define do
     factory :between_categories_transactions do
       transactinable { |transaction| transaction.association(:between_categories_transaction) }
     end
+
+    factory :balance_transaction_creator do
+      comment { Faker::Internet.slug }
+
+      initialize_with do
+        BalanceTransactions::Creator.new(
+          amount: amount,
+          date: date,
+          comment: comment,
+          user_id: user.id
+        ).create
+      end
+    end
   end
 end
