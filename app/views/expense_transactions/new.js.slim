@@ -1,0 +1,4 @@
+| $("#home-expense_transaction-form").html("#{escape_javascript(render 'expense_transactions/form')}");
+| $("#modal-window .modal-content .modal-body").html("#{escape_javascript(render 'expense_transactions/form')}");
+| $("#modal-window .modal-content .modal-title").text("#{escape_javascript(t('expense_transaction_modal_title'))}");
+| $("#expense-transactions-date").datepicker({format: 'yyyy-mm-dd'});
