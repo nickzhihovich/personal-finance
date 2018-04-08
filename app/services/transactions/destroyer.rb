@@ -13,6 +13,8 @@ class Transactions::Destroyer < Struct.new(:transaction)
       CategoryTransactions::Destroyer.new(transaction).call
     when BetweenCategoriesTransaction
       BetweenCategoriesTransactions::Destroyer.new(transaction).call
+    when ExpenseTransaction
+      ExpenseTransactions::Destroyer.new(transaction).call
     end
   end
 
