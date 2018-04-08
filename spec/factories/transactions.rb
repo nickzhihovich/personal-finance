@@ -16,6 +16,10 @@ FactoryBot.define do
       transactinable { |transaction| transaction.association(:between_categories_transaction) }
     end
 
+    factory :expense_transactions do
+      transactinable { |transaction| transaction.association(:expense_transaction) }
+    end
+
     factory :balance_transaction_creator do
       comment { Faker::Internet.slug }
 

@@ -9,6 +9,7 @@ describe Charts::Home::CategoriesWithChanges do
   let(:amount) { Faker::Number.decimal(2, 2).to_f }
 
   let(:categories_titles) { categories.pluck(:title) }
+  let(:expected_amount) { Transaction.category_transactions.sum(&:amount) }
 
   let(:changes) { described_class.new(Transaction.category_transactions).call }
 
@@ -26,5 +27,5 @@ describe Charts::Home::CategoriesWithChanges do
 
   it { expect(changes.length).to eq(1) }
   it { expect(changes[0][:category]).to eq(category) }
-  it { expect(changes[0][:changes]).to eq(amount * 5) }
+  it { expect(changes[0][:changes]).to eq(expected_amount) }
 end

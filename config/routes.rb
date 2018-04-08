@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
   end
   resources :balance_transactions, except: %i[index show destroy]
+  resources :expense_transactions, except: %i[index show destroy]
   resources :between_categories_transactions, only: %i[new create]
 
   resources :categories do
