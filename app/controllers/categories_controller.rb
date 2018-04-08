@@ -1,8 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_category, only: %i[show update destroy edit]
+  before_action :find_category, only: %i[show update destroy edit enter_expense]
   before_action :set_parent, only: %i[new create]
   before_action :category_creator, only: :create
+  before_action :create_expense_transaction_new_form, only: :enter_expense
 
   def index
     @categories = current_user.categories.main_category.order(id: :desc)
@@ -45,6 +46,9 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def enter_expense
+  end
+
   def destroy
     @category.destroy
 
@@ -56,6 +60,13 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def create_expense_transaction_new_form
+    @form = ExpenseTransactionForm.new(
+      current_user.transactions.new,
+      expense_transactions: ExpenseTransaction.new(category_id: params[:id])
+    )
+  end
 
   def category_creator
     @category = Categories::Creator.new(parent: @parent, params: create_params).create
