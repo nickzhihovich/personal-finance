@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :categories do
     get 'add_money', on: :member, to: 'category_transactions#new'
     post 'update_balance', on: :member, to: 'category_transactions#create'
+    get 'enter_expense', on: :member, to: 'categories#enter_expense'
   end
 
   get '/date_chart', to: 'pages#date_chart'
