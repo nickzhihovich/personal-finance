@@ -62,6 +62,7 @@ en:
   choose_a_categories: 'Choose a categories'
   you_should_authorized: 'You are not authorized to perform this action.'
   insufficient_funds: 'Insufficient funds'
+  filter: 'Filter'
   transaction:
     types:
       to_balance: 'To balance'

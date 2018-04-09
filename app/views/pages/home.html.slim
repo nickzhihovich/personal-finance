@@ -24,15 +24,15 @@
         ul#category-list.list-group
           = render partial: @categories
     .col
-      .chart
-        h2 
-          = t('categories_budget')
-        = render 'pages/home/charts'
-  
-  .row
-    = render 'pages/home/filter'
-  .row
-    #date-charts
+      .row
+        = render 'pages/home/filter'
+      .row
+        .chart
+          h2 
+            = t('categories_budget')
+      #date-charts-categories
+        = render 'pages/date_chart'
+
 - else
   h2
     = t('home_page')

@@ -1,15 +1,15 @@
 import $ from "jquery";
 
 $(document).on('turbolinks:load', function() {
-    let categorisPie = document.getElementById('categoris-pie').getContext('2d');
-    let categories_titles = JSON.parse($('#categoris-pie').attr('data-titles'));
-    let categories_amounts = JSON.parse($('#categoris-pie').attr('data-amounts'));
-    let charts_colors = JSON.parse($('#categoris-pie').attr('data-colors'));
+    let categoriesPie = document.getElementById('categories-pie').getContext('2d');
+    let categories_titles = JSON.parse($('#categories-pie').attr('data-titles'));
+    let categories_amounts = JSON.parse($('#categories-pie').attr('data-amounts'));
+    let charts_colors = JSON.parse($('#categories-pie').attr('data-colors'));
     
     Chart.defaults.global.defaultFontSize = 18;
     Chart.defaults.global.defaultFontColor = '#777';
 
-    let massPopChart = new Chart(categorisPie, {
+    let massPopChart = new Chart(categoriesPie, {
       type:'pie',
       data:{
         labels: categories_titles,
