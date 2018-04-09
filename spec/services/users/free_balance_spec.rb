@@ -6,11 +6,11 @@ RSpec.describe 'Users::FreeBalances', type: :feature do
 
   let(:category) { create(:main_category, categorizable: user) }
   let(:category_transaction) { create(:category_transaction, category: category) }
-  let!(:category_transactions) do
+  let(:category_transactions) do
     create_list(:category_transactions, 10, user: user, transactinable: category_transaction)
   end
 
-  let(:expected_balance) { amount - category_transactions.sum(&:amount) }
+  let(:expected_balance) { amount - user.categories.sum(&:amount) }
   let(:free_balance) { Users::FreeBalance.new(user).call }
 
   before do

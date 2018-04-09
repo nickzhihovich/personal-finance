@@ -10,9 +10,9 @@ class Users::FreeBalance < Struct.new(:user)
   end
 
   def transactions_amount
-    user_category_transactions.sum(&:amount)
+    user_categories.sum(&:amount)
   end
 
-  delegate :category_transactions, to: :user, prefix: true
+  delegate :categories, to: :user, prefix: true
   delegate :balance, to: :user
 end
