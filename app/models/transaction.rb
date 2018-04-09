@@ -15,4 +15,8 @@ class Transaction < ApplicationRecord
   def balance_type?
     transactinable_type == 'BalanceTransaction'
   end
+
+  def expense_type?
+    transactinable_type == 'ExpenseTransaction'
+  end
 end

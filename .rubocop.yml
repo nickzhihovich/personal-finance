@@ -216,3 +216,7 @@ RSpec/ExampleLength:
 Metrics/CyclomaticComplexity:
   Exclude:
     - "app/services/charts/hsv_to_rgb.rb"
+
+Metrics/ParameterLists:
+  Exclude:
+    - "app/services/expense_transactions/updater.rb"
