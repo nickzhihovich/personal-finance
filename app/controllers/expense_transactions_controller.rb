@@ -36,15 +36,20 @@ class ExpenseTransactionsController < ApplicationController
     {
       amount: permitted_params[:amount].to_f,
       date: permitted_params[:date],
-      category_id: permitted_params[:expense_transactions_attributes][:category_id]
+      category_id: expense_attributes[:category_id],
+      comment: expense_attributes[:comment]
     }
+  end
+
+  def expense_attributes
+    permitted_params[:expense_transactions_attributes]
   end
 
   def permitted_params
     params.require(:transaction).permit(
       :amount,
       :date,
-      expense_transactions_attributes: :category_id
+      expense_transactions_attributes: %i[category_id comment]
     )
   end
 end

@@ -4,11 +4,14 @@ describe ExpenseTransactions::Creator do
   let(:user) { create(:user) }
   let(:date) { Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.current) }
   let(:amount) { Faker::Number.decimal(3, 2).to_f }
+  let(:comment) { Faker::Internet.slug }
 
   context 'when valid' do
     let(:balance) { Faker::Number.decimal(4, 2).to_f }
     let(:category) { create(:main_category, amount: balance, user: user) }
-    let(:params) { {amount: amount, user_id: user.id, category_id: category.id, date: date} }
+    let(:params) do
+      {amount: amount, user_id: user.id, category_id: category.id, date: date, comment: comment}
+    end
 
     it 'creates ExpenseTransaction' do
       expect do
@@ -25,7 +28,9 @@ describe ExpenseTransactions::Creator do
 
   context 'when invalid: category.amount < amount' do
     let(:category) { create(:main_category, amount: 100) }
-    let(:params) { {amount: amount, user_id: user.id, category_id: category.id, date: date} }
+    let(:params) do
+      {amount: amount, user_id: user.id, category_id: category.id, date: date, comment: comment}
+    end
 
     it 'creates Transaction' do
       expect do

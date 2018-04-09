@@ -1,9 +1,10 @@
 class ExpenseTransactions::Creator
-  def initialize(amount:, user_id:, category_id:, date:)
+  def initialize(amount:, user_id:, category_id:, date:, comment:)
     @amount = amount
     @user_id = user_id
     @category_id = category_id
     @date = date.to_date
+    @comment = comment
   end
 
   def create
@@ -18,7 +19,7 @@ class ExpenseTransactions::Creator
   private
 
   def create_expense_transaction
-    @transaction = ExpenseTransaction.create(category_id: @category_id)
+    @transaction = ExpenseTransaction.create(category_id: @category_id, comment: @comment)
   end
 
   def add_transaction_to_user

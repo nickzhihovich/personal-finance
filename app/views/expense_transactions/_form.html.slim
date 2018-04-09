@@ -1,6 +1,7 @@
 = simple_form_for @form, url: expense_transactions_path, remote: true do |f|
   = f.simple_fields_for :expense_transactions do |t|
     = t.input :category_id, collection: @categories, label_method: :to_label, prompt: false
+    = t.input :comment
   = f.input :date, as: :string, order: [:day, :month, :year], input_html: {id: 'expense-transactions-date'}
   = f.input :amount
   = f.button :submit, class: 'btn btn-outline-success'
