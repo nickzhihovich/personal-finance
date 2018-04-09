@@ -1,4 +1,4 @@
-= search_form_for @search, url: search_transactions_path, method: :post do |f|
+= search_form_for @search, url: search_transactions_path, method: :get, remote: true do |f|
   h4
     =t('select_date_range')
   .row  

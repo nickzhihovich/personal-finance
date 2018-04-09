@@ -11,7 +11,7 @@
     h2
       = t('last_ten_transactions')
     - unless @transactions.empty? 
-      = render 'transactions/table'
+      = render 'pages/table'
     - else
       h2
         = t('transactions_not_found')

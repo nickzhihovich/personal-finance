@@ -1,0 +1,12 @@
+table.table
+  thead
+    tr
+      th scope="col"
+        = t('activerecord.attributes.transaction.amount')
+      th scope="col"
+        = t('activerecord.attributes.transaction.type')
+      th scope="col"
+        = t('activerecord.attributes.transaction.date')
+      th
+  tbody
+    = render partial: @transactions
