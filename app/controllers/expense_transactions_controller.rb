@@ -1,7 +1,7 @@
 class ExpenseTransactionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :create_new_form, only: %i[new create]
-  before_action :set_categories, only: %i[new create]
+  before_action :create_form
+  before_action :set_categories
 
   def new
   end
@@ -21,8 +21,8 @@ class ExpenseTransactionsController < ApplicationController
     @categories = current_user.categories.decorate
   end
 
-  def create_new_form
-    @form = ExpenseTransactionForm.new(
+  def create_form
+    @form ||= ExpenseTransactionForm.new(
       current_user.transactions.new,
       expense_transactions: ExpenseTransaction.new
     )
