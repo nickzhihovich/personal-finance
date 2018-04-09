@@ -8,6 +8,7 @@ class Transaction < ApplicationRecord
 
   scope :balance_transactions, -> { where(transactinable_type: 'BalanceTransaction') }
   scope :category_transactions, -> { where(transactinable_type: 'CategoryTransaction') }
+  scope :last_ten, -> { order('id desc').limit(10) }
 
   def balance_type?
     transactinable_type == 'BalanceTransaction'
