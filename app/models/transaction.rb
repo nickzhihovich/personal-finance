@@ -7,6 +7,7 @@ class Transaction < ApplicationRecord
                      numericality: {greater_than: 0, less_than: 1_000_000_00}
 
   scope :balance_transactions, -> { where(transactinable_type: 'BalanceTransaction') }
+  scope :between_categories, -> { where(transactinable_type: 'BetweenCategoriesTransaction') }
   scope :category_transactions, -> { where(transactinable_type: 'CategoryTransaction') }
   scope :last_ten, -> { order('id desc').limit(10) }
 

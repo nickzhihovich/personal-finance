@@ -6,12 +6,10 @@ class Charts::Home::GetData < Struct.new(:transactions)
   private
 
   def categories_date
-    Charts::Home::CategoriesWithChangesDate.new(categories_with_changes).date
+    Charts::Home::CategoriesWithChangesDate.new(categories_with_changes).data
   end
 
   def categories_with_changes
-    Charts::Home::CategoriesWithChanges.new(category_transactions).call
+    Charts::Home::CategoriesWithChanges.new(transactions).call
   end
-
-  delegate :category_transactions, to: :transactions
 end

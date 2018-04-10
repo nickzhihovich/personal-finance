@@ -1,4 +1,4 @@
-class Charts::Home::CategoriesWithChanges < Struct.new(:category_transactions)
+class Charts::Home::CategoriesWithChanges < Struct.new(:transactions)
   def call
     categories_with_changes
   end
@@ -12,15 +12,13 @@ class Charts::Home::CategoriesWithChanges < Struct.new(:category_transactions)
   end
 
   def categories_that_was_changed
-    category_transactions.map do |transaction|
-      transaction.transactinable.category
-    end.uniq
+    Charts::Home::CategoriesThatWasChanges.new(transactions).call
   end
 
   def incame_to_category(category)
     Charts::Home::CategoryAmountChange.new(
       category: category,
-      category_transactions: category_transactions
+      transactions: transactions
     ).call
   end
 end

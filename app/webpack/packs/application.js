@@ -16,4 +16,3 @@ import Turbolinks from 'turbolinks';
 Turbolinks.start();
 
 import '../src/javascript/sb-admin';
-import '../src/javascript/charts';

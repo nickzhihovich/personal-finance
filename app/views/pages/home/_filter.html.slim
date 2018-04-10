@@ -1,9 +1,5 @@
 = search_form_for @search, url: date_chart_path, method: :get, remote: true do |f|
   h4
     =t('select_date_range')
-  .row  
-    .col
-      = f.input :date_gteq, label: t('from_date')
-    .col
-      = f.input :date_lteq, label: t('to_date')
+  = f.input :date_lteq, label: t('to_date')
   = f.button :submit, t('filter'), class: "btn btn-info"

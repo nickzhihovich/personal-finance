@@ -14,7 +14,7 @@ describe Charts::Home::CategoriesWithChangesDate do
     Charts::Home::CategoriesWithChanges.new(Transaction.category_transactions).call
   end
 
-  let(:data_chenges) { described_class.new(changes).date }
+  let(:data_chenges) { described_class.new(changes).data }
 
   before do
     create(:balance_transaction_creator, amount: balance, user: user)

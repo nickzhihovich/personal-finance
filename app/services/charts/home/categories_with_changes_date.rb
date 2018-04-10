@@ -1,5 +1,5 @@
 class Charts::Home::CategoriesWithChangesDate < Struct.new(:categories_with_changes)
-  def date
+  def data
     {
       categories_titles: categories_titles,
       categories_amounts: categories_amounts,
@@ -10,11 +10,11 @@ class Charts::Home::CategoriesWithChangesDate < Struct.new(:categories_with_chan
   private
 
   def categories_titles
-    categories_with_changes.pluck(:category).pluck(:title)
+    categories_with_changes.map { |item| item[:category].title }
   end
 
   def categories_amounts
-    categories_with_changes.pluck(:changes).map(&:to_f)
+    categories_with_changes.map { |item| item[:changes].to_f }
   end
 
   def charts_colors
