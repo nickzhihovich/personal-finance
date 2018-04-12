@@ -10,8 +10,8 @@
   .last-transactions
     h2
       = t('last_ten_transactions')
-    - unless @transactions.empty? 
-      = render 'transactions/table'
+    - unless @last_transactions.empty? 
+      = render 'pages/home/table'
     - else
       h2
         = t('transactions_not_found')
@@ -28,7 +28,7 @@
         h2 
           = t('categories_budget')
         
-        = render 'pages/charts'
+        = render 'pages/home/charts'
 - else
   h2
     = t('home_page')

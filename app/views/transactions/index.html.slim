@@ -6,11 +6,10 @@ h2
 
 = render 'transactions/filter'
 
-- unless @transactions.empty? 
-  = render 'transactions/table'
+- unless @transactions.empty?
+  #transactions
+    = render 'transactions/table'
 
-  nav aria-label="blah"
-    = will_paginate @transactions
 - else
   h2
     = t('transactions_not_found')
