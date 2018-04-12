@@ -19,6 +19,13 @@ RSpec.describe ExpenseTransactionsController, type: :controller do
     end
   end
 
+  describe 'GET #edit' do
+    it 'renders the :edit template' do
+      get :edit, params: {id: transaction.id}
+      expect(response).to render_template :edit
+    end
+  end
+
   describe 'POST #create' do
     context 'when valid' do
       let(:attributes) do
@@ -67,6 +74,69 @@ RSpec.describe ExpenseTransactionsController, type: :controller do
       it 'render :new template' do
         post :create, params: attributes
         expect(response).to render_template :new
+      end
+    end
+  end
+
+  describe 'PUT #update' do
+    context 'when valid' do
+      let(:amount) { Faker::Number.between(100, 1000) }
+
+      let(:params) do
+        {
+          id: transaction.id,
+          transaction: attributes_for(:transaction,
+            expense_transactions_attributes: {
+              category_id: category.id
+            },
+            amount: amount, id: transaction.id)
+        }
+      end
+
+      before do
+        put :update, params: params
+        transaction.reload
+      end
+
+      it 'updates transaction amount' do
+        expect(transaction.amount).to eq(amount)
+      end
+
+      it 'redirects after update' do
+        put :update, params: params
+        expect(response).to  redirect_to activity_page_path
+      end
+    end
+
+    context 'when not valid' do
+      let(:init_amount) { transaction.amount }
+      let(:init_date) { transaction.date }
+
+      let(:params) do
+        {
+          id: transaction.id,
+          transaction: attributes_for(
+            :transaction,
+            expense_transactions_attributes: {category_id: category.id},
+            amount: nil,
+            data: nil,
+            id: transaction.id
+          )
+        }
+      end
+
+      before do
+        put :update, params: params
+        transaction.reload
+      end
+
+      it 'transaction not updates when invalid amount' do
+        expect(transaction.amount).to eq(init_amount)
+      end
+
+      it 'render :edit template' do
+        put :update, params: params
+        expect(response).to render_template :edit
       end
     end
   end

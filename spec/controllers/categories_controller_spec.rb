@@ -15,6 +15,13 @@ RSpec.describe CategoriesController, type: :controller do
     end
   end
 
+  describe 'GET #enter_expense' do
+    it 'renders the :enter_expense template' do
+      visit enter_expense_category_path(category)
+      expect(response.status).to eq(200)
+    end
+  end
+
   describe 'GET #show' do
     it 'renders show template' do
       visit category_path(category)

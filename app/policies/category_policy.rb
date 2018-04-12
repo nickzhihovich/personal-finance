@@ -7,6 +7,10 @@ class CategoryPolicy < ApplicationPolicy
     present_and_belongs_to_user?
   end
 
+  def enter_expense?
+    present_and_belongs_to_user?
+  end
+
   def destroy?
     present_and_belongs_to_user?
   end

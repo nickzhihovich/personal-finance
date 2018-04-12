@@ -9,6 +9,7 @@ h4
   i.fa.fa-money.fa-lg
   = t('add_money')
 = link_to t('add_sub_category'), new_category_path(category_id: @category.id),  {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-primary'}
+= link_to t('add_expense_transaction'), enter_expense_category_path,  {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-primary'}
 
 - unless @subcategories.blank?
   h4

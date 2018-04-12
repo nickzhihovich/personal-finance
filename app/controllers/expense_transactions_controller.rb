@@ -1,7 +1,8 @@
 class ExpenseTransactionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :create_form
+  before_action :create_form, only: %i[new create]
   before_action :set_categories
+  before_action :edit_form, only: %i[edit update]
 
   def new
   end
@@ -12,6 +13,23 @@ class ExpenseTransactionsController < ApplicationController
       redirect_to activity_page_path, flash: {notice: t('transaction_create')}
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @form.validate(permitted_params)
+      ExpenseTransactions::Updater.new(update_params.merge(init_amount: @form.model.amount)).update
+      redirect_to activity_page_path, flash: {notice: t('transaction_update')}
+    else
+      render :edit
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -26,6 +44,22 @@ class ExpenseTransactionsController < ApplicationController
       current_user.transactions.new,
       expense_transactions: ExpenseTransaction.new
     )
+  end
+
+  def edit_form
+    @form ||= ExpenseTransactionForm.new(transaction, expense_transactions: expense_transaction)
+  end
+
+  def expense_transaction
+    @expense_transaction ||= transaction.transactinable
+  end
+
+  def transaction
+    @_transaction ||= Transaction.find(params[:id])
+  end
+
+  def update_params
+    params_to_hash.merge(transaction_id: params[:id])
   end
 
   def create_params
