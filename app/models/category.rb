@@ -7,6 +7,7 @@ class Category < ApplicationRecord
   has_many :sub_categories, as: :categorizable, dependent: :destroy, class_name: 'Category'
 
   scope :main_category, -> { where(categorizable_type: 'User') }
+  scope :with_amount, -> { where.not(amount: 0) }
 
   validates :amount, :title, presence: true
   validates :amount, presence: true, format: {with: /\A\d+(?:\.\d{0,2})?\z/},

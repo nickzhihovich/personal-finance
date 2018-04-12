@@ -16,11 +16,19 @@
       h2
         = t('transactions_not_found')
 
-  .home-categories
-    h2
-      = t('categories')
-    ul#category-list.list-group
-      = render partial: @categories
+  .row
+    .col
+      .home-categories
+        h2
+          = t('categories')
+        ul#category-list.list-group
+          = render partial: @categories
+    .col
+      .chart
+        h2 
+          = t('categories_budget')
+        
+        = render 'pages/charts'
 - else
   h2
     = t('home_page')

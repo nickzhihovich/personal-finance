@@ -1,0 +1,10 @@
+require 'rails_helper'
+
+describe Charts::ColorsArray do
+  let(:init_count) { Faker::Number.digit.to_i }
+  let(:colors_array) { described_class.new(init_count).collors_array }
+
+  it 'get array colors' do
+    expect(colors_array.length).to eq(init_count)
+  end
+end

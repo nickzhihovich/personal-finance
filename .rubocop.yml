@@ -129,6 +129,7 @@ MethodLength:
   Exclude:
     - "spec/**/*"
     - "db/migrate/**"
+    - "app/services/charts/hsv_to_rgb.rb"
 
 Metrics/LineLength:
   Max: 105
@@ -211,3 +212,7 @@ Style/StructInheritance:
 RSpec/ExampleLength:
   Exclude:
     - "spec/features/**/*"
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - "app/services/charts/hsv_to_rgb.rb"
