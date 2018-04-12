@@ -13,6 +13,9 @@ class ExpenseTransactionForm < TransactionForm
     validates :comment, length: {maximum: 80}
   end
 
+
+  private
+
   def amount_valid?
     errors.add(:amount, I18n.t('insufficient_funds')) if category.amount < amount.to_f
   end
