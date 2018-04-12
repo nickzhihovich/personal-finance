@@ -63,6 +63,9 @@ en:
   you_should_authorized: 'You are not authorized to perform this action.'
   insufficient_funds: 'Insufficient funds'
   filter: 'Filter'
+  expense_transaction_modal_title: 'Enter expense for category'
+  add_expense_transaction: 'Enter expenses'
+  expense_for: 'Expense for'
   transaction:
     types:
       to_balance: 'To balance'

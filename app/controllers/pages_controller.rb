@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   def home
     @form = BalanceTransactionForm.new(Transaction.new, balance_transactions: BalanceTransaction.new)
     @last_transactions = current_user.transactions_last_ten
-    @categories = current_user.categories.main_category
+    @categories = current_user.categories.main_category.decorate
     @date = Charts::Home::GetData.new(@transactions).call
   end
 

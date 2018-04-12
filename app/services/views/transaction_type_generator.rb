@@ -16,6 +16,8 @@ class Views::TransactionTypeGenerator < Struct.new(:transactinable)
       category_transaction_block
     when BetweenCategoriesTransaction
       between_categories_transaction_block
+    when ExpenseTransaction
+      expense_transaction_block
     end
   end
 
@@ -29,6 +31,10 @@ class Views::TransactionTypeGenerator < Struct.new(:transactinable)
 
   def between_categories_transaction_block
     block(category_link(category_from), ' ~> ', category_link(category_to))
+  end
+
+  def expense_transaction_block
+    block(balance_content(I18n.t('expense_for')), ' - ', category_link(category))
   end
 
   def block(*items)

@@ -1,37 +1,40 @@
 - if user_signed_in?
-  button.btn.btn-outline-info aria-controls="add-money-form" aria-expanded="false" data-target="#add-money-form" data-toggle="collapse" type="button" 
-    = t('add_money')
-  #add-money-form.collapse
-    h2
+  .home-page
+    button.btn.btn-outline-info aria-controls="add-money-form" aria-expanded="false" data-target="#add-money-form" data-toggle="collapse" type="button" 
       = t('add_money')
-    #home-transaction-form
-      = render 'balance_transactions/form'
+    = link_to t('add_expense_transaction'), new_expense_transaction_path, {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window', class: 'btn btn-outline-info'}
 
-  .last-transactions
-    h2
-      = t('last_ten_transactions')
-    - unless @last_transactions.empty? 
-      = render 'pages/home/table'
-    - else
+    #add-money-form.collapse
       h2
-        = t('transactions_not_found')
+        = t('add_money')
+      #home-transaction-form
+        = render 'balance_transactions/form'
 
-  .row
-    .col
-      .home-categories
+    .last-transactions
+      h2
+        = t('last_ten_transactions')
+      - unless @last_transactions.empty? 
+        = render 'pages/home/table'
+      - else
         h2
-          = t('categories')
-        ul#category-list.list-group
-          = render partial: @categories
-    .col
-      .row
-        = render 'pages/home/filter'
-      .row
-        .chart
-          h2 
-            = t('categories_budget')
-      #date-charts-categories
-        = render 'pages/date_chart'
+          = t('transactions_not_found')
+
+    .row
+      .col
+        .home-categories
+          h2
+            = t('categories')
+          ul#category-list.list-group
+            = render partial: @categories
+      .col
+        .row
+          = render 'pages/home/filter'
+        .row
+          .chart
+            h2 
+              = t('categories_budget')
+        #date-charts-categories
+          = render 'pages/date_chart'
 
 - else
   h2

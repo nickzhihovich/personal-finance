@@ -13,6 +13,7 @@ class ExpenseTransactionForm < TransactionForm
     validates :comment, length: {maximum: 80}
   end
 
+
   private
 
   def amount_valid?
