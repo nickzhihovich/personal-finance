@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = @parent.sub_categories.new
+    @category = @set_parent.sub_categories.new
   end
 
   def create
@@ -69,11 +69,11 @@ class CategoriesController < ApplicationController
   end
 
   def category_creator
-    @category = Categories::Creator.new(parent: @parent, params: create_params).create
+    @category = Categories::Creator.new(parent: @set_parent, params: create_params).create
   end
 
   def set_parent
-    @parent ||= category || current_user
+    @set_parent ||= category || current_user
   end
 
   def category

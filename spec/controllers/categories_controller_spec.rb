@@ -86,7 +86,7 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'PUT #update' do
     context 'when valid' do
-      let(:amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
+      let(:amount) { BigDecimal(Faker::Number.decimal(3, 2)) }
       let(:title) { Faker::Internet.user_name(5..15) }
       let(:params) do
         {
@@ -146,7 +146,7 @@ RSpec.describe CategoriesController, type: :controller do
 
     context 'when another user' do
       let(:another_user) { create(:user) }
-      let(:amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
+      let(:amount) { BigDecimal(Faker::Number.decimal(3, 2)) }
       let(:init_title) { category.title }
       let(:title) { Faker::Internet.user_name(5..15) }
       let(:params) do

@@ -45,15 +45,15 @@ class BetweenCategoriesTransactions::Creator
   end
 
   def category_from
-    @_category_from ||= user_categories.find(@category_from_id)
+    @category_from ||= user_categories.find(@category_from_id)
   end
 
   def category_to
-    @_category_to ||= user_categories.find(@category_to_id)
+    @category_to ||= user_categories.find(@category_to_id)
   end
 
   def user
-    @_user ||= User.find(@user_id)
+    @user ||= User.find(@user_id)
   end
 
   delegate :categories, to: :user, prefix: true

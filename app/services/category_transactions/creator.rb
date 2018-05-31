@@ -34,7 +34,7 @@ class CategoryTransactions::Creator
   end
 
   def category
-    @_category ||= Category.find(@category_id)
+    @category ||= Category.find(@category_id)
   end
 
   def valid?
@@ -42,6 +42,6 @@ class CategoryTransactions::Creator
   end
 
   def user
-    @_user ||= User.find(@user_id)
+    @user ||= User.find(@user_id)
   end
 end

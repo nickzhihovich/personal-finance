@@ -58,7 +58,7 @@ class BalanceTransactionsController < ApplicationController
   end
 
   def transaction
-    @_transaction ||= Transaction.find(params[:id])
+    @transaction ||= Transaction.find(params[:id])
   end
 
   def params_to_hash

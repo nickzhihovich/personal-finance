@@ -7,7 +7,7 @@ describe Views::TransactionTypeGenerator do
   let(:category_transactinable) { create(:category_transaction, category: category) }
   let(:category_transaction) { create(:category_transactions, transactinable: category_transactinable) }
 
-  let(:amount_from) { BigDecimal.new(1_000) }
+  let(:amount_from) { BigDecimal(1_000) }
   let(:category_from) { create(:category, user: user, amount: amount_from, categorizable: user) }
   let(:category_to) { create(:category, user: user, categorizable: user) }
   let(:between_categories_transaction) do

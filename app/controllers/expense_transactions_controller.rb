@@ -8,7 +8,7 @@ class ExpenseTransactionsController < ApplicationController
   end
 
   def create
-    if @form.validate(permitted_params)
+    if @create_form.validate(permitted_params)
       ExpenseTransactions::Creator.new(create_params).create
       redirect_to activity_page_path, flash: {notice: t('transaction_create')}
     else
@@ -20,8 +20,8 @@ class ExpenseTransactionsController < ApplicationController
   end
 
   def update
-    if @form.validate(permitted_params)
-      ExpenseTransactions::Updater.new(update_params.merge(init_amount: @form.model.amount)).update
+    if @edit_form.validate(permitted_params)
+      ExpenseTransactions::Updater.new(update_params.merge(init_amount: @edit_form.model.amount)).update
       redirect_to activity_page_path, flash: {notice: t('transaction_update')}
     else
       render :edit
@@ -40,14 +40,14 @@ class ExpenseTransactionsController < ApplicationController
   end
 
   def create_form
-    @form ||= ExpenseTransactionForm.new(
+    @create_form ||= ExpenseTransactionForm.new(
       current_user.transactions.new,
       expense_transactions: ExpenseTransaction.new
     )
   end
 
   def edit_form
-    @form ||= ExpenseTransactionForm.new(transaction, expense_transactions: expense_transaction)
+    @edit_form ||= ExpenseTransactionForm.new(transaction, expense_transactions: expense_transaction)
   end
 
   def expense_transaction
@@ -55,7 +55,7 @@ class ExpenseTransactionsController < ApplicationController
   end
 
   def transaction
-    @_transaction ||= Transaction.find(params[:id])
+    @transaction ||= Transaction.find(params[:id])
   end
 
   def update_params

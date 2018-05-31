@@ -26,11 +26,11 @@ class BetweenCategoriesTransactions::Destroyer < Struct.new(:transaction)
   end
 
   def category_from
-    @_category_from ||= Category.find(transactinable.category_from_id)
+    @category_from ||= Category.find(transactinable.category_from_id)
   end
 
   def category_to
-    @_category_to ||= Category.find(transactinable.category_to_id)
+    @category_to ||= Category.find(transactinable.category_to_id)
   end
 
   delegate :amount, :transactinable, to: :transaction

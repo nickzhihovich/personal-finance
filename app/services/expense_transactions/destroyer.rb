@@ -21,7 +21,7 @@ class ExpenseTransactions::Destroyer < Struct.new(:transaction)
   end
 
   def category
-    @_category ||= Category.find(transactinable.category_id)
+    @category ||= Category.find(transactinable.category_id)
   end
 
   delegate :amount, :transactinable, to: :transaction

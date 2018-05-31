@@ -24,6 +24,6 @@ class BalanceTransactions::Updater
   end
 
   def transaction
-    @_transaction ||= Transaction.find(@transaction_id)
+    @transaction ||= Transaction.find(@transaction_id)
   end
 end

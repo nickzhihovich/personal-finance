@@ -15,7 +15,7 @@ class BalanceTransactions::Destroyer < Struct.new(:transaction)
   end
 
   def user
-    @_user ||= User.find(user_id)
+    @user ||= User.find(user_id)
   end
 
   delegate :user_id, :amount, to: :transaction

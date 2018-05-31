@@ -35,10 +35,10 @@ class ExpenseTransactions::Updater
   end
 
   def category
-    @_category = Category.find(@category_id)
+    @category = Category.find(@category_id)
   end
 
   def transaction
-    @_transaction ||= Transaction.find(@transaction_id)
+    @transaction ||= Transaction.find(@transaction_id)
   end
 end

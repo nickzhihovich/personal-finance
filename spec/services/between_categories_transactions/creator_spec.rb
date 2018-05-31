@@ -4,9 +4,9 @@ describe BetweenCategoriesTransactions::Creator do
   context 'when valid' do
     let(:user) { create(:user) }
 
-    let(:amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
-    let(:amount_from) { BigDecimal.new(10_000) }
-    let(:init_category_to_amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
+    let(:amount) { BigDecimal(Faker::Number.decimal(3, 2)) }
+    let(:amount_from) { BigDecimal(10_000) }
+    let(:init_category_to_amount) { BigDecimal(Faker::Number.decimal(3, 2)) }
 
     let(:category_from) do
       create(:main_category, user: user, amount: amount_from, categorizable: user)
@@ -53,8 +53,8 @@ describe BetweenCategoriesTransactions::Creator do
   context 'when not valid' do
     let(:user) { create(:user) }
 
-    let(:amount) { BigDecimal.new(Faker::Number.decimal(4, 2)) }
-    let(:category_amount) { BigDecimal.new(Faker::Number.decimal(3, 2)) }
+    let(:amount) { BigDecimal(Faker::Number.decimal(4, 2)) }
+    let(:category_amount) { BigDecimal(Faker::Number.decimal(3, 2)) }
 
     let(:category_from) do
       create(:main_category, user: user, amount: category_amount, categorizable: user)

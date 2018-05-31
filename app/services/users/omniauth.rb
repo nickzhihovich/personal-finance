@@ -14,7 +14,7 @@ class Users::Omniauth < Struct.new(:auth)
   end
 
   def user
-    @_user ||= User.find_by(email: email) || create_user
+    @user ||= User.find_by(email: email) || create_user
   end
 
   def create_user
