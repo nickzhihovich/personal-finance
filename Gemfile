@@ -9,6 +9,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'draper'
+gem "execjs"
 gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 gem 'omniauth'
 gem 'omniauth-github'
@@ -25,7 +26,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'slim'
 gem 'turbolinks', '~> 5'
-
+gem "therubyracer"
 gem 'jbuilder', '~> 2.5'
 gem 'rails', '~> 5.1.5'
 gem 'ransack'
@@ -36,6 +37,11 @@ gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'dotenv-rails'

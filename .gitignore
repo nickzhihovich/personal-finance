@@ -23,7 +23,7 @@
 /node_modules
 yarn-debug.log*
 .yarn-integrity
-
+personal-finance.pem
 \.idea/**/*
 
 *.xml
