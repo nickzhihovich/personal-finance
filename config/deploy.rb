@@ -14,4 +14,4 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 
 set :pty, true
 set :ssh_options, {forward_agent: true, auth_methods: %w[publickey], keys: %w[personal-finance.pem]}
-set :default_env, { 'NODE_ENV' => 'production' }
+set :default_env, {'NODE_ENV' => 'production'}
