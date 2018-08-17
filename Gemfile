@@ -42,6 +42,7 @@ group :development, :test do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
+  gem 'capistrano-yarn'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'dotenv-rails'
